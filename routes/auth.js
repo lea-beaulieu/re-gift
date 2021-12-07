@@ -37,6 +37,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         res
             .status(400)
             .render("auth/signup", { errorMessage: "Merci de renseigner tous les champs." });
+            // return empêche la création de l'user en DB
             return;
     } else if (!email || !password || !city){
         res
@@ -58,6 +59,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         errorMessage:
         "Votre mot de passe doit contenir au moins 8 charactères dont 1 chiffre, 1 minuscule et 1 majuscule.",
       });
+      return;
     }
     
 

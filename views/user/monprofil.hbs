@@ -7,6 +7,13 @@
 
     <div>
         <h3>Ma liste de cadeaux</h3>
+        
+        {{#each giftFromDb}}
+          {{!-- <img src="" alt=""/> --}}
+          <a href="/mygifts/{{id}}">{{name}}</a>
+          <a href="/update">Update</a>
+          <a href="/delete">Delete</a>
+        {{/each}}
     </div>
 {{else}}
     <p>Connectez-vous !</p>
