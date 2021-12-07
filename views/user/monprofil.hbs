@@ -1,0 +1,13 @@
+{{#if userInSession}} 
+    <h2>{{userInSession.firstname}} {{userInSession.lastname}}</h2>
+    {{!-- <img src="userInSession.avatar"/> --}}
+    <a href="/ajouteruncadeau">Ajouter un cadeau</a>
+    <a href="/statutdestrocs">Demandes et propositions de trocs</a>
+    {{!-- <a href="/mesfavoris">Mes favoris</a> --}}
+
+    <div>
+        <h3>Ma liste de cadeaux</h3>
+    </div>
+{{else}}
+    <p>Connectez-vous !</p>
+{{/if}}

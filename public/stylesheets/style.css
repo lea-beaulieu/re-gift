@@ -10,3 +10,20 @@ a {
 h1 {
   color: 15px;
 }
+
+/* Style pour mieux visualiser le code uniquement */
+nav {
+  border: 2px solid #f51515c4;
+}
+
+footer {
+  border: 2px solid #f51515c4;
+}
+
+#accueil img {
+  width: 500px;
+}
+
+#nav img {
+  width: 100px;
+}

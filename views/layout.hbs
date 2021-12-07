@@ -10,8 +10,25 @@
    </head>
 
    <body>
+      <nav id="nav">
+        <a href="/"><img src="/images/logo.png" alt="logo"/></a>
+        <a href="/lescadeaux">Les cadeaux</a>
+        <a href="/lesassociations">Les associations</a>
+        <a href="/login">Mon compte</a>
+        {{#if userInSession }}
+          <a href="/logout">Se déconnecter</a>
+        {{/if}}
+      </nav><br><br>
 
-      {{{body}}}
+      <main>
+        {{{body}}}
+      </main>
+
+      <br><br><footer id="footer">
+         <a href="">Qui sommes nous ?</a>
+         <a href="">FAQ</a>
+         <a href="">Aide</a>
+      </footer>
 
       <script src="/js/script.js"></script>
    </body>

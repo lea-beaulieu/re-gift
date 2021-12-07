@@ -1,0 +1,28 @@
+<div>
+  <h2>Nouvel utilisateur ?</h2>
+  <p>Vous n'avez pas encore de compte, n'hésitez plus et commencer à troquer.</p>
+  <a href="/signup">S'enregistrer avec son email</a>
+  {{!-- <a>Social login facebook</a>
+  <a>Social login google </a> --}}
+</div>
+
+
+<div>
+    <h2>J'ai déjà un compte</h2>
+    
+<form action="/login" method="POST">
+    <label>
+        Email:
+        <input type="text" name="email" placeholder="you@email.com">
+    </label>
+    <label>
+        Password:
+        <input type="password" name="password" placeholder="********">
+    </label>
+    <button>Je me connecte</button>
+</form>
+
+{{#if errMessage}}
+      <h3>{{errMessage}}</h3>
+{{/if}}
+</div>

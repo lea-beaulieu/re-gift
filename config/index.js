@@ -55,7 +55,7 @@ module.exports = (app) => {
     session({
       secret: process.env.SESSION_SECRET || "super hyper secret key",
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true,
       store: MongoStore.create({
         mongoUrl: MONGO_URI,
       }),

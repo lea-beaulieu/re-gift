@@ -1,50 +1,49 @@
-<form action="/auth/signup" method="POST">
-    <Label>
+<form action="/signup" method="POST">
+    <label>
         Prénom
-        <input type="text" name="prénom">
-    </Label>
+        <input type="text" name="firstname">
+    </label>
 
     <label>
         Nom
-        <input type="text" name="nom">
+        <input type="text" name="lastname">
     </label>
 
     <label>
         Nom d'utilisateur
-        <input type="text" name="nomdutilisateur">
+        <input type="text" name="username">
     </label>
 
     <label>
         Email
-        <input type="email" name="email">
+        <input type="text" name="email">
     </label>
 
     <label>
         Mot de passe
-        <input type="password" name="motdepasse">
-    </label>
-
-    <label>
-        Confirmation du mot de passe
-        <input type="password" name="confirmationdumotdepasse">
+        <input type="password" name="password">
     </label>
 
     {{!-- <input id="image" type="file" name="profile_photo" placeholder="Photo" required="" capture> --}}
     {{!-- <label>
         Photo de profil
-        <input type="text" name="nom">
+        <input type="text" name="avatar">
     </label> --}}
 
     <label>
         Ville
-        <input type="text" name="ville">
+        <input type="text" name="city">
     </label>
 
     <label>
         Code postal
-        <input type="number" name="codepostal">
+        <input type="text" name="zip">
     </label>
 
-    <a href="/monprofil">Je créé mon compte</a>
+    <button>Je crée mon compte</button>
     
 </form>
+
+{{#if errorMessage}}
+    <h2>{{errorMessage}}</h2>
+{{/if}}
