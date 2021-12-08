@@ -1,7 +1,7 @@
 {{#if userInSession}} 
     <h2>{{userInSession.firstname}} {{userInSession.lastname}}</h2>
     {{!-- <img src="userInSession.avatar"/> --}}
-    <a href="/ajouteruncadeau">Ajouter un cadeau</a>
+    <a href="/add">Ajouter un cadeau</a>
     <a href="/statutdestrocs">Demandes et propositions de trocs</a>
     {{!-- <a href="/mesfavoris">Mes favoris</a> --}}
 
@@ -11,7 +11,7 @@
         {{#each giftFromDb}}
           {{!-- <img src="" alt=""/> --}}
           <a href="/mygifts/{{id}}">{{name}}</a>
-          <a href="/update">Update</a>
+          <a href="/mygifts/{{id}}/edit">Update</a>
           <a href="/delete">Delete</a>
         {{/each}}
     </div>

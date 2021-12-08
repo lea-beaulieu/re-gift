@@ -1,0 +1,40 @@
+<h1>Edit my gift {{giftToEdit.name}} </h1>
+
+<form action="/mygifts/{{giftToEdit.id}}/edit" method="POST">
+
+  <label>
+      Name
+      <input type="text" name="name" value="{{giftToEdit.name}}">
+  </label>
+
+  <label>
+      Category
+      <select multiple name="category">
+        <option value="fragrances">Fragrances</option>
+        <option value="boxes">Boxes</option>
+        <option value="toys">Toys</option>
+        <option value="books">Books</option>
+      </select>
+  </label>
+
+  <label>
+      Brand
+      <input type="text" name="brand" value="{{giftToEdit.brand}}">
+  </label>
+
+  <label>
+      Description
+      <textarea name="description"> {{giftToEdit.description}}
+      </textarea>
+  </label>
+
+  {{!-- <label>
+      Photos
+      <input type="text" name="photos">
+  </label> --}}
+
+   <button>Edit</button>
+  
+</form>
+
+<a href="/monprofil">Return to my profile</a>
