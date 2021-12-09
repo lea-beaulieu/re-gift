@@ -10,10 +10,6 @@ const saltRounds = 10;
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
-const isLoggedOut = require("../middleware/isLoggedOut");
-const isLoggedIn = require("../middleware/isLoggedIn");
-
 // ######  ####  ######   ##    ## ##     ## ########  
 // ##    ##  ##  ##    ##  ###   ## ##     ## ##     ## 
 // ##        ##  ##        ####  ## ##     ## ##     ## 
@@ -23,12 +19,12 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 //  ######  ####  ######   ##    ##  #######  ## 
 
 //affichage du formulaire de signup
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/signup", (req, res) => {
     res.render("auth/signup");
 });
 
 //traitement du formulaire de signup
-router.post("/signup", isLoggedOut, (req, res) => {
+router.post("/signup", (req, res) => {
     console.log('The form data: ', req.body);
     const {firstname, lastname, username, email, password, city, zip } = req.body;
 
@@ -62,18 +58,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       return;
     }
     
-
-    // Search the database for a user with the username submitted in the form
-    User.findOne({ username }).then((found) => {
-        // If the user is found, send the message username is taken
-        if (found) {
-            res
-                .status(400)
-                .render("auth/signup", { errorMessage: "Ce nom d'utilisateur n'est pas disponible." });
-                return;
-        }
-
-        // if user is not found, create a new user - start with hashing the password
+    //hashing the password
         bcrypt
             .genSalt(saltRounds)
             .then(salt => {
@@ -96,7 +81,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
                 console.log('User created:' , userFromDB);
                 // Bind the user to the session object
                 req.session.user = userFromDB;
-                res.redirect("/monprofil");
+                res.redirect("/profile");
                 return;
             })
             .catch((error) => {
@@ -105,17 +90,16 @@ router.post("/signup", isLoggedOut, (req, res) => {
                     res
                         .status(400)
                         .render("auth/signup", { errorMessage: error.message });
-                }
-                if (error.code === 11000) {
+                } else if (error.code === 11000) {
                     res.status(400).render("auth/signup", {
-                        errorMessage: "Ce nom d'utilisateur existe déjà. Choisissez-en un autre s'il-vous-plait.",
+                        errorMessage: "Ce nom d'utilisateur et/ou cet email sont déjà associés à un compte.",
                     });
-                }
-                res
+                } else {res
                     .status(500)
                     .render("auth/signup", { errorMessage: error.message });
+                }
             });
-    });
+    
 });
 
 // ##        #######   ######   #### ##    ## 
@@ -127,12 +111,12 @@ router.post("/signup", isLoggedOut, (req, res) => {
 // ########  #######   ######   #### ##    ## 
 
 //affichage formulaire de login
-router.get("/login", isLoggedOut, (req, res) => {
+router.get("/login", (req, res) => {
     res.render("auth/login");
 });
 
 //traitement formulaire de login
-router.post("/login", isLoggedOut, (req, res, next) => {
+router.post("/login", (req, res, next) => {
     console.log('SESSION:', req.session);
     const { email, password } = req.body;
 
@@ -144,7 +128,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     }
 
     // Here we use the same logic as above
-    // - either length based parameters or we check the strength of a password
+    // we check the strength of a password
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!regex.test(password)) {
         res.status(400).render("auth/login", {
@@ -153,7 +137,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         });
       }
 
-    // Search the database for a user with the username submitted in the form
+    // Search the database for a user with the email submitted in the form
     User.findOne({ email })
         .then((user) => {
             // If the user isn't found, send the message that user provided wrong credentials
@@ -175,7 +159,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
                 //save the user in the session
                 req.session.user = user;
                 // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-                res.redirect("/monprofil");
+                res.redirect("/profile");
                 return;
             });
         })
@@ -196,7 +180,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 // ##       ##     ## ##    ##  ##     ## ##     ##    ##    
 // ########  #######   ######    #######   #######     ##   
 
-router.get("/logout", isLoggedIn, (req, res) => {
+router.get("/logout",(req, res) => {
     req.session.destroy((err) => {
         if (err) {
             res

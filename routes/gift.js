@@ -10,18 +10,18 @@ const Gift = require("../models/Gift.model.js");
 // ##     ## ########  ########  
 
 //affichage formulaire add gift
-router.get('/add', (req, res) => {
-    res.render('gift/new')
+router.get('/mygifts/add', (req, res) => {
+    res.render('gift/new', {userInSession: req.session.user})
 })
 
 // traitement formulaire add gift
-router.post('/addgift', (req, res) => {
+router.post('/mygifts', (req, res) => {
     const { name, category, brand, description } = req.body;
 
     Gift.create({ name, category, brand, description })
         .then(createdgift => {
             console.log(`createdgift: ${createdgift}`)
-            res.redirect('/monprofil');
+            res.redirect('/profile');
         })
         .catch(error => {
             console.log(`error while adding a gift: ${error}`)
@@ -41,7 +41,7 @@ router.post('/addgift', (req, res) => {
 router.get('/mygifts/:id', (req, res) => {
     Gift.findById(req.params.id)
         .then((giftDetails) => {
-            res.render('gift/description', { giftDetails })
+            res.render('gift/description', { giftDetails, userInSession: req.session.user})
         })
         .catch(error => {
             console.log(`error on gift details: ${error}`)
@@ -67,7 +67,7 @@ router.get('/mygifts/:id', (req, res) => {
 router.get('/mygifts/:id/edit', (req, res) => {
     Gift.findById(req.params.id)
         .then((giftToEdit) => {
-            res.render('gift/edit', { giftToEdit })
+            res.render('gift/edit', { giftToEdit, userInSession: req.session.user })
         })
         .catch(error => {
             console.log(`Error during the update of the current gift details: ${error}`)
@@ -84,31 +84,12 @@ router.post('/mygifts/:id/edit', (req, res) => {
     Gift.findByIdAndUpdate(req.params.id, { name, category, brand, description }, { new: true })
         .then(editedgift => {
             console.log(`The edition of the gift ${editedgift.name} is properly done`)
-            res.render('gift/description');
+            res.redirect('/mygifts/' + req.params.id);
         })
         .catch(error => {
             console.log(`error while editing the following gift: ${error}`)
             res.render('gift/edit', { errorMessage: 'Error while adding a gift.' })
         })
 })
-
-/*
-// ########  ######## ##       ######## ######## ######## 
-// ##     ## ##       ##       ##          ##    ##       
-// ##     ## ##       ##       ##          ##    ##       
-// ##     ## ######   ##       ######      ##    ######   
-// ##     ## ##       ##       ##          ##    ##       
-// ##     ## ##       ##       ##          ##    ##       
-// ########  ######## ######## ########    ##    ######## 
-
-router.post('/mygifts/:id/delete', (req, res)=> {
-    Gift.findByIdAndRemove(req.params.id)
-      .then((deletedgift) => res.redirect('/monprofil'))
-      .catch(error => {
-        console.log(`error while deleting a gift: ${error}`)
-        res.render('user/monprofil',  { errorMessage: 'Error while deleting a gift.' })
-    })
-})
-*/
 
 module.exports = router;

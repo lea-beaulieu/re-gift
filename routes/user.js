@@ -9,7 +9,7 @@ const Gift = require("../models/Gift.model.js");
 // ##        ##    ##  ##     ## ##        ##  ##       
 // ##        ##     ##  #######  ##       #### ######## 
 
-router.get('/monprofil', (req, res)=> {
+router.get('/profile', (req, res)=> {
     if(!req.session.user) {
         res.redirect('/login')
     }

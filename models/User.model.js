@@ -4,12 +4,10 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
   {
     firstname : {
-      type: String,
-      unique: true, 
+      type: String, 
     },
     lastname: {
       type: String,
-      unique: true, 
     },
     username: {
       type: String,
@@ -25,12 +23,10 @@ const userSchema = new Schema(
     password: String,
     city: {
       type: String,
-      unique: true,
     },
     zip: {
       type: String,
       match: [/([0-9]{5})$/, 'Veuillez entrer un code postal français.'],
-      unique: true,
     },
     
     // avatar: {
