@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Gift = require("../models/Gift.model.js");
+const Transaction = require("../models/Transaction.model.js");
 
 // ###    ########  ########  
 // ## ##   ##     ## ##     ## 
@@ -17,8 +18,9 @@ router.get('/mygifts/add', (req, res) => {
 // traitement formulaire add gift
 router.post('/mygifts', (req, res) => {
     const { name, category, brand, description } = req.body;
-
-    Gift.create({ name, category, brand, description })
+    const user = req.session.user._id
+    console.log('user: ', user)
+    Gift.create({ name, category, brand, description, user })
         .then(createdgift => {
             console.log(`createdgift: ${createdgift}`)
             res.redirect('/profile');
@@ -90,6 +92,22 @@ router.post('/mygifts/:id/edit', (req, res) => {
             console.log(`error while editing the following gift: ${error}`)
             res.render('gift/edit', { errorMessage: 'Error while adding a gift.' })
         })
+})
+
+
+// ######## ########     ###    ##    ##  ######     ###     ######  ######## ####  #######  ##    ##  ######  
+//    ##    ##     ##   ## ##   ###   ## ##    ##   ## ##   ##    ##    ##     ##  ##     ## ###   ## ##    ## 
+//    ##    ##     ##  ##   ##  ####  ## ##        ##   ##  ##          ##     ##  ##     ## ####  ## ##       
+//    ##    ########  ##     ## ## ## ##  ######  ##     ## ##          ##     ##  ##     ## ## ## ##  ######  
+//    ##    ##   ##   ######### ##  ####       ## ######### ##          ##     ##  ##     ## ##  ####       ## 
+//    ##    ##    ##  ##     ## ##   ### ##    ## ##     ## ##    ##    ##     ##  ##     ## ##   ### ##    ## 
+//    ##    ##     ## ##     ## ##    ##  ######  ##     ##  ######     ##    ####  #######  ##    ##  ######  
+
+router.post('/mestrocs', (req,res) =>{
+    const {giftA, giftb} = req.body;
+    const user = req.session.user._id
+
+    
 })
 
 module.exports = router;

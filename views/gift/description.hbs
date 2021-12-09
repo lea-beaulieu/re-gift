@@ -7,4 +7,17 @@
 
   <p>Description : {{giftDetails.description}}</p>
 
+<form action="/mestrocs" method="POST">
+  <label>
+    My gifts 
+    <select name="mygifts" multiple>
+      {{#each giftDetails}}
+          <a href="/mygifts/{{id}}">{{name}}</a>
+      {{/each}}
+    </select>
+  </label>
+
+  <button>Proposer un troc</button>
+</form>
+
   <a href="/profile">Return to my profile</a>

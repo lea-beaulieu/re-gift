@@ -14,7 +14,7 @@ router.get('/profile', (req, res)=> {
         res.redirect('/login')
     }
     // listing des cadeaux sur le profil de l'user
-    Gift.find({})
+    Gift.find({user: req.session.user._id})
     .then((giftFromDb) => {
       res.render('user/monprofil', {
         userInSession: req.session.user,
