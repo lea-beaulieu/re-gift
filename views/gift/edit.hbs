@@ -1,3 +1,4 @@
+{{#if userInSession}}
 <h1>Edit my gift {{giftToEdit.name}} </h1>
 
 <form action="/mygifts/{{giftToEdit.id}}/edit" method="POST">
@@ -38,3 +39,6 @@
 </form>
 
 <a href="/profile">Return to my profile</a>
+{{else}}
+  <p>Connectez-vous!</p>
+{{/if}}

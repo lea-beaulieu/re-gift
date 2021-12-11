@@ -32,18 +32,20 @@ router.post('/mygifts', (req, res) => {
 })
 
 
-// ########  ######## ########    ###    #### ##        ######  
-// ##     ## ##          ##      ## ##    ##  ##       ##    ## 
-// ##     ## ##          ##     ##   ##   ##  ##       ##       
-// ##     ## ######      ##    ##     ##  ##  ##        ######  
-// ##     ## ##          ##    #########  ##  ##             ## 
-// ##     ## ##          ##    ##     ##  ##  ##       ##    ## 
-// ########  ########    ##    ##     ## #### ########  ######  
+// ##     ## ##    ##     ######   #### ######## ########    ########  ######## ########    ###    #### ##        ######  
+// ###   ###  ##  ##     ##    ##   ##  ##          ##       ##     ## ##          ##      ## ##    ##  ##       ##    ## 
+// #### ####   ####      ##         ##  ##          ##       ##     ## ##          ##     ##   ##   ##  ##       ##       
+// ## ### ##    ##       ##   ####  ##  ######      ##       ##     ## ######      ##    ##     ##  ##  ##        ######  
+// ##     ##    ##       ##    ##   ##  ##          ##       ##     ## ##          ##    #########  ##  ##             ## 
+// ##     ##    ##       ##    ##   ##  ##          ##       ##     ## ##          ##    ##     ##  ##  ##       ##    ## 
+// ##     ##    ##        ######   #### ##          ##       ########  ########    ##    ##     ## #### ########  ######  
 
 router.get('/mygifts/:id', (req, res) => {
     Gift.findById(req.params.id)
         .then((giftDetails) => {
-            res.render('gift/description', { giftDetails, userInSession: req.session.user})
+            res.render('gift/description', { 
+                giftDetails, 
+                userInSession: req.session.user})
         })
         .catch(error => {
             console.log(`error on gift details: ${error}`)
@@ -69,7 +71,9 @@ router.get('/mygifts/:id', (req, res) => {
 router.get('/mygifts/:id/edit', (req, res) => {
     Gift.findById(req.params.id)
         .then((giftToEdit) => {
-            res.render('gift/edit', { giftToEdit, userInSession: req.session.user })
+            res.render('gift/edit', { 
+                giftToEdit, 
+                userInSession: req.session.user })
         })
         .catch(error => {
             console.log(`Error during the update of the current gift details: ${error}`)
@@ -79,7 +83,6 @@ router.get('/mygifts/:id/edit', (req, res) => {
 
 
 // Route POST for editing the details of an existing gift listing
-
 router.post('/mygifts/:id/edit', (req, res) => {
     const { name, category, brand, description } = req.body;
 
@@ -94,6 +97,67 @@ router.post('/mygifts/:id/edit', (req, res) => {
         })
 })
 
+// ######   #### ######## ########  ######      ######     ###    ######## ########  ######    #######  ########  #### ########  ######  
+// ##    ##   ##  ##          ##    ##    ##    ##    ##   ## ##      ##    ##       ##    ##  ##     ## ##     ##  ##  ##       ##    ## 
+// ##         ##  ##          ##    ##          ##        ##   ##     ##    ##       ##        ##     ## ##     ##  ##  ##       ##       
+// ##   ####  ##  ######      ##     ######     ##       ##     ##    ##    ######   ##   #### ##     ## ########   ##  ######    ######  
+// ##    ##   ##  ##          ##          ##    ##       #########    ##    ##       ##    ##  ##     ## ##   ##    ##  ##             ## 
+// ##    ##   ##  ##          ##    ##    ##    ##    ## ##     ##    ##    ##       ##    ##  ##     ## ##    ##   ##  ##       ##    ## 
+//  ######   #### ##          ##     ######      ######  ##     ##    ##    ########  ######    #######  ##     ## #### ########  ######  
+
+ 
+router.get('/gifts', (req, res) => {
+    res.render('othersgift/gifts', {})
+})
+
+
+// ######   #### ######## ########  ######     ########  ##    ##     ######     ###    ######## ########  ######    #######  ########  ##    ## 
+// ##    ##   ##  ##          ##    ##    ##    ##     ##  ##  ##     ##    ##   ## ##      ##    ##       ##    ##  ##     ## ##     ##  ##  ##  
+// ##         ##  ##          ##    ##          ##     ##   ####      ##        ##   ##     ##    ##       ##        ##     ## ##     ##   ####   
+// ##   ####  ##  ######      ##     ######     ########     ##       ##       ##     ##    ##    ######   ##   #### ##     ## ########     ##    
+// ##    ##   ##  ##          ##          ##    ##     ##    ##       ##       #########    ##    ##       ##    ##  ##     ## ##   ##      ##    
+// ##    ##   ##  ##          ##    ##    ##    ##     ##    ##       ##    ## ##     ##    ##    ##       ##    ##  ##     ## ##    ##     ##    
+//  ######   #### ##          ##     ######     ########     ##        ######  ##     ##    ##    ########  ######    #######  ##     ##    ##    
+
+router.get('/gifts/category', (req, res )=>{
+    console.log('req.query: ', req.query)
+    console.log('req.query.name: ', req.query.name)
+    
+    Gift.find({category: req.query.name})
+    .populate('user')
+    .then((giftsOfSelectedCategory) => {
+       console.log('gift: ', giftsOfSelectedCategory)
+        res.render('othersgift/giftsbycategory', {category: req.query.name, giftsOfSelectedCategory})
+   })
+   .catch()
+})
+
+// ###        ######   #### ######## ########    ########  ######## ########    ###    #### ##        ######  
+// ## ##      ##    ##   ##  ##          ##       ##     ## ##          ##      ## ##    ##  ##       ##    ## 
+// ##   ##     ##         ##  ##          ##       ##     ## ##          ##     ##   ##   ##  ##       ##       
+// ##     ##    ##   ####  ##  ######      ##       ##     ## ######      ##    ##     ##  ##  ##        ######  
+// #########    ##    ##   ##  ##          ##       ##     ## ##          ##    #########  ##  ##             ## 
+// ##     ##    ##    ##   ##  ##          ##       ##     ## ##          ##    ##     ##  ##  ##       ##    ## 
+// ##     ##     ######   #### ##          ##       ########  ########    ##    ##     ## #### ########  ######  
+
+router.get('/gifts/:id',(req,res)=> {
+    Gift.findById(req.params.id)
+      .then((giftDetails)=>{
+          Gift.find({user: req.session.user})
+            .then(giftsFromDb=>{
+                console.log('my gifts: ', giftsFromDb)
+          res.render('gift/description', {
+              giftDetails,
+              giftsFromDb,
+              userInSession: req.session.user})
+          })
+      })
+      .catch(error => {
+        console.log(`error on gift details: ${error}`)
+        res.redirect('/gifts/category')
+      })
+})
+
 
 // ######## ########     ###    ##    ##  ######     ###     ######  ######## ####  #######  ##    ##  ######  
 //    ##    ##     ##   ## ##   ###   ## ##    ##   ## ##   ##    ##    ##     ##  ##     ## ###   ## ##    ## 
@@ -103,11 +167,18 @@ router.post('/mygifts/:id/edit', (req, res) => {
 //    ##    ##    ##  ##     ## ##   ### ##    ## ##     ## ##    ##    ##     ##  ##     ## ##   ### ##    ## 
 //    ##    ##     ## ##     ## ##    ##  ######  ##     ##  ######     ##    ####  #######  ##    ##  ######  
 
-router.post('/mestrocs', (req,res) =>{
-    const {giftA, giftb} = req.body;
-    const user = req.session.user._id
-
-    
+router.post('/gifts/:id', (req,res) =>{
+    console.log('req.body: ', req.body);
+  Transaction.create({
+      giftA: req.params.id,
+      giftB: req.body.mygifts,
+      statut: 'initiée',
+  })
+  .then(troc => {
+      console.log('troc: ', troc)
+      res.render('mestrocs', {troc})
+  })
+  .catch()
 })
 
 module.exports = router;

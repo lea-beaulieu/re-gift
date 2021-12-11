@@ -6,6 +6,11 @@ const {Schema} = mongoose;
 const transactionSchema = new mongoose.Schema({
   giftA: {type : Schema.Types.ObjectId, ref: 'Gift', required: true},
   giftB: {type: Schema.Types.ObjectId, ref:'Gift', required: true},
+  statut: {
+    type: String,
+    enum: ['initiée', 'acceptée', 'refusée'],
+    default:'disponible'
+  }
 },
 {
     timestamps: true

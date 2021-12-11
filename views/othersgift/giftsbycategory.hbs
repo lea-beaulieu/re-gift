@@ -1,0 +1,12 @@
+<h1>The {{category}} </h1>
+
+<h2>Number of {{category}} : {{giftsOfSelectedCategory.length}}</h2>
+
+{{#each giftsOfSelectedCategory}}
+  <img src="" alt="giftImg"/>
+  <a href="/gifts/{{id}}"><p>Name : {{this.name}}</p></a>
+  <p>ZIP : {{user.zip}}</p>
+{{/each}}
+
+
+<a href="/gifts">Return to all categories</a>

@@ -1,3 +1,4 @@
+{{#if userInSession}}
 <h1>Add a new gift</h1>
 
 <form action="/mygifts" method="POST">
@@ -29,7 +30,12 @@
 
   {{!-- <label>
       Photos
-      <input type="text" name="photos">
+      <select name="photos" multiple>
+        <option value="http://....">Photo1</option>
+        <option value="http://....">Photo2</option>
+        <option value="http://....">Photo3</option>
+        <option value="http://....">Photo4</option>
+      </select>
   </label> --}}
 
    <button>Add</button>
@@ -37,3 +43,6 @@
 </form>
 
 <a href="/profile">Return to my profile</a>
+{{else}}
+  <p>Connectez-vous!</p>
+{{/if}}
