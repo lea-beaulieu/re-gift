@@ -172,7 +172,7 @@ router.post('/gifts/:id', (req,res) =>{
   Transaction.create({
       giftA: req.params.id,
       giftB: req.body.mygifts,
-      statut: 'initiée',
+      statut: 'initiated',
   })
   .then(troc => {
       console.log('troc: ', troc)
