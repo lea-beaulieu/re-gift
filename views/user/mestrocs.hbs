@@ -1,0 +1,41 @@
+{{#if userInSession}} 
+
+
+<h1> Transactions status</h1>
+
+
+<form action="/mestrocs" method="POST">
+
+    {{#each transaction}}
+    <button>Accept</button>
+    <button>Decline</button>
+    {{/each}}
+    
+</form>
+
+  
+
+
+<h2> Tradings I have requested </h2>
+
+
+       {{#each transactionFromDb}}
+  <p>{{this.giftB.name}} versus {{this.giftA.name}} proposé par {{this.userA.username}} </p>
+
+<form action="/mestrocs" method="POST">
+
+<button>Accept</button>
+<button>Decline</button>
+
+</form>
+
+        {{/each}}
+
+
+<h2> Pending tradings requested by others users </h2>
+
+
+  
+{{else}}
+    <p>Connectez-vous !</p>
+{{/if}}

@@ -12,7 +12,7 @@ const Transaction = require("../models/Transaction.model.js");
 
 //affichage formulaire add gift
 router.get('/mygifts/add', (req, res) => {
-    res.render('gift/new', {userInSession: req.session.user})
+    res.render('gift/new', { userInSession: req.session.user })
 })
 
 // traitement formulaire add gift
@@ -43,9 +43,10 @@ router.post('/mygifts', (req, res) => {
 router.get('/mygifts/:id', (req, res) => {
     Gift.findById(req.params.id)
         .then((giftDetails) => {
-            res.render('gift/description', { 
-                giftDetails, 
-                userInSession: req.session.user})
+            res.render('gift/description', {
+                giftDetails,
+                userInSession: req.session.user
+            })
         })
         .catch(error => {
             console.log(`error on gift details: ${error}`)
@@ -71,9 +72,10 @@ router.get('/mygifts/:id', (req, res) => {
 router.get('/mygifts/:id/edit', (req, res) => {
     Gift.findById(req.params.id)
         .then((giftToEdit) => {
-            res.render('gift/edit', { 
-                giftToEdit, 
-                userInSession: req.session.user })
+            res.render('gift/edit', {
+                giftToEdit,
+                userInSession: req.session.user
+            })
         })
         .catch(error => {
             console.log(`Error during the update of the current gift details: ${error}`)
@@ -105,7 +107,7 @@ router.post('/mygifts/:id/edit', (req, res) => {
 // ##    ##   ##  ##          ##    ##    ##    ##    ## ##     ##    ##    ##       ##    ##  ##     ## ##    ##   ##  ##       ##    ## 
 //  ######   #### ##          ##     ######      ######  ##     ##    ##    ########  ######    #######  ##     ## #### ########  ######  
 
- 
+
 router.get('/gifts', (req, res) => {
     res.render('othersgift/gifts', {})
 })
@@ -119,17 +121,17 @@ router.get('/gifts', (req, res) => {
 // ##    ##   ##  ##          ##    ##    ##    ##     ##    ##       ##    ## ##     ##    ##    ##       ##    ##  ##     ## ##    ##     ##    
 //  ######   #### ##          ##     ######     ########     ##        ######  ##     ##    ##    ########  ######    #######  ##     ##    ##    
 
-router.get('/gifts/category', (req, res )=>{
+router.get('/gifts/category', (req, res) => {
     console.log('req.query: ', req.query)
     console.log('req.query.name: ', req.query.name)
-    
-    Gift.find({category: req.query.name})
-    .populate('user')
-    .then((giftsOfSelectedCategory) => {
-       console.log('gift: ', giftsOfSelectedCategory)
-        res.render('othersgift/giftsbycategory', {category: req.query.name, giftsOfSelectedCategory})
-   })
-   .catch()
+
+    Gift.find({ category: req.query.name })
+        .populate('user')
+        .then((giftsOfSelectedCategory) => {
+            console.log('gift: ', giftsOfSelectedCategory)
+            res.render('othersgift/giftsbycategory', { category: req.query.name, giftsOfSelectedCategory })
+        })
+        .catch()
 })
 
 // ###        ######   #### ######## ########    ########  ######## ########    ###    #### ##        ######  
@@ -140,22 +142,23 @@ router.get('/gifts/category', (req, res )=>{
 // ##     ##    ##    ##   ##  ##          ##       ##     ## ##          ##    ##     ##  ##  ##       ##    ## 
 // ##     ##     ######   #### ##          ##       ########  ########    ##    ##     ## #### ########  ######  
 
-router.get('/gifts/:id',(req,res)=> {
+router.get('/gifts/:id', (req, res) => {
     Gift.findById(req.params.id)
-      .then((giftDetails)=>{
-          Gift.find({user: req.session.user})
-            .then(giftsFromDb=>{
-                console.log('my gifts: ', giftsFromDb)
-          res.render('gift/description', {
-              giftDetails,
-              giftsFromDb,
-              userInSession: req.session.user})
-          })
-      })
-      .catch(error => {
-        console.log(`error on gift details: ${error}`)
-        res.redirect('/gifts/category')
-      })
+        .then((giftDetails) => {
+            Gift.find({ user: req.session.user })
+                .then(giftsFromDb => {
+                    console.log('my gifts: ', giftsFromDb)
+                    res.render('gift/description', {
+                        giftDetails,
+                        giftsFromDb,
+                        userInSession: req.session.user
+                    })
+                })
+        })
+        .catch(error => {
+            console.log(`error on gift details: ${error}`)
+            res.redirect('/gifts/category')
+        })
 })
 
 
@@ -167,18 +170,63 @@ router.get('/gifts/:id',(req,res)=> {
 //    ##    ##    ##  ##     ## ##   ### ##    ## ##     ## ##    ##    ##     ##  ##     ## ##   ### ##    ## 
 //    ##    ##     ## ##     ## ##    ##  ######  ##     ##  ######     ##    ####  #######  ##    ##  ######  
 
-router.post('/gifts/:id', (req,res) =>{
+router.post('/gifts/:id', (req, res) => {
     console.log('req.body: ', req.body);
-  Transaction.create({
-      giftA: req.params.id,
-      giftB: req.body.mygifts,
-      statut: 'initiated',
-  })
-  .then(troc => {
-      console.log('troc: ', troc)
-      res.render('mestrocs', {troc})
-  })
-  .catch()
+    Transaction.create({
+            giftA: req.params.id,
+            giftB: req.body.mygifts,
+            statut: 'initiated',
+        })
+        .then(transaction => {
+            console.log('troc: ', transaction)
+            res.render('user/mestrocs', { transaction, userInSession: req.session.user })
+        })
+        .catch()
 })
+
+
+/*
+######## ########     ###    ##    ##  ######     ###     ######  ######## ####  #######  ##    ##    ##     ## ########  ########     ###    ######## ######## 
+   ##    ##     ##   ## ##   ###   ## ##    ##   ## ##   ##    ##    ##     ##  ##     ## ###   ##    ##     ## ##     ## ##     ##   ## ##      ##    ##       
+   ##    ##     ##  ##   ##  ####  ## ##        ##   ##  ##          ##     ##  ##     ## ####  ##    ##     ## ##     ## ##     ##  ##   ##     ##    ##       
+   ##    ########  ##     ## ## ## ##  ######  ##     ## ##          ##     ##  ##     ## ## ## ##    ##     ## ########  ##     ## ##     ##    ##    ######   
+   ##    ##   ##   ######### ##  ####       ## ######### ##          ##     ##  ##     ## ##  ####    ##     ## ##        ##     ## #########    ##    ##       
+   ##    ##    ##  ##     ## ##   ### ##    ## ##     ## ##    ##    ##     ##  ##     ## ##   ###    ##     ## ##        ##     ## ##     ##    ##    ##       
+   ##    ##     ## ##     ## ##    ##  ######  ##     ##  ######     ##    ####  #######  ##    ##     #######  ##        ########  ##     ##    ##    ######## 
+*/
+
+
+// Route GET for listing the current transactions
+router.get('/mytransaction/:id/edit', (req, res) => {
+    Transaction.findById(req.params.id)
+        .populate('giftA')
+        .populate('giftB')
+        .then((transactionToEdit) => {
+            console.log(giftA);
+            console.log(giftB);
+            res.render('user/mestrocs', { transactionToEdit, userInSession: req.session.user })
+        })
+        .catch(error => {
+            console.log(`Error during the update of the transaction status: ${error}`)
+            res.render('user/mestrocs')
+        })
+})
+
+
+// Route POST for editing a defined current transaction
+router.post('/mytransaction/:id/edit', (req, res) => {
+    const { statut } = req.body
+
+    Transaction.findByIdAndUpdate(req.params.id, { statut }, { new: true })
+        .then(editedtransaction => {
+            console.log(`The edition of the transaction ${giftA} versus ${giftB} is properly done`)
+            res.render('user/mestrocs', { editedtransaction, userInSession: req.session.user })
+        })
+        .catch(error => {
+            console.log(`error while editing the transaction ${error}`)
+            res.render('user/mestrocs', { errorMessage: 'Error while editing the transaction', userInSession: req.session.user })
+        })
+})
+
 
 module.exports = router;
