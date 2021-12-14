@@ -11,8 +11,6 @@
     <p>Gift I would like to have : <a href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
     <p>Gift I proposed: <a href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a></p>
     <p>On : {{this.createdAt}}</p>
-    <button>Accept</button>
-    <button>Decline</button>
     {{/each}}
 
 </form>
@@ -25,6 +23,7 @@
     <p>Gift I have : <a href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
     <p>Gift proposed to me: <a href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}})</p>
     <p>On : {{this.createdAt}}</p>
+    <p>Status: {{this.statut}}</p>
     <button>Accept</button>
     <button>Decline</button>
     {{/each}}
