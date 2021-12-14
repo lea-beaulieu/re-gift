@@ -1,0 +1,27 @@
+{{#if userInSession}}
+ <h2>"{{giftDetails.name}}" details</h2>
+
+  <img src="" alt="photo1">
+  <img src="" alt="photo2">
+  <img src="" alt="photo3">
+  <img src="" alt="photo4">
+
+  <p>Description : {{giftDetails.description}}</p>
+
+ <form action="/gifts/{{giftDetails.id}}" method="POST">
+  <label>
+    My gifts 
+    <select name="mygifts" multiple>
+      {{#each giftsFromDb}}
+          <option value={{this.id}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <button>Proposer un troc</button>
+</form>
+
+<a href="/profile">Return to my profile</a>
+{{else}}
+  <p>Connectez-vous!</p>
+{{/if}}

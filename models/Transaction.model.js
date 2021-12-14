@@ -9,7 +9,7 @@ const transactionSchema = new mongoose.Schema({
   statut: {
     type: String,
     enum: ['initiated', 'accepted', 'refused'],
-    default:'disponible'
+    default:'available'
   }
 },
 {
