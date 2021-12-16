@@ -21,11 +21,21 @@
 
     {{#each transactionsIamaskedfor}}
     <p>Gift I have : <a href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
-    <p>Gift proposed to me: <a href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}})</p>
+    <p>Gift suggested to me: <a href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}})</p>
     <p>On : {{this.createdAt}}</p>
     <p>Status: {{this.statut}}</p>
-    <button>Accept</button>
-    <button>Decline</button>
+
+    <label>
+      Answer now :
+
+      <select multiple name="statut">
+        <option value="accepted">accepted</option>
+        <option value="declined">declined</option> 
+      </select>
+
+    </label>
+    <button>Submit my choice</button>
+
     {{/each}}
 
 </form>
