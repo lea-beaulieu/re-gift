@@ -2,7 +2,6 @@ const router = require("express").Router();
 const Gift = require("../models/Gift.model.js");
 const Transaction = require("../models/Transaction.model.js");
 
-
 // ###    ########  ########  
 // ## ##   ##     ## ##     ## 
 // ##   ##  ##     ## ##     ## 
@@ -146,6 +145,7 @@ router.get('/gifts/category', (req, res) => {
 
 router.get('/gifts/:id', (req, res) => {
     Gift.findById(req.params.id)
+        .populate('user')
         .then((giftDetails) => {
             Gift.find({ user: req.session.user })
                 .then(giftsFromDb => {

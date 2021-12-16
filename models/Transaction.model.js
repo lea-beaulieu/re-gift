@@ -8,8 +8,7 @@ const transactionSchema = new mongoose.Schema({
   giftB: {type: Schema.Types.ObjectId, ref:'Gift', required: true},
   statut: {
     type: String,
-    enum: ['initiated', 'accepted', 'refused'],
-    default:'available'
+    enum: ['initiated', 'accepted', 'refused']
   }
 },
 {

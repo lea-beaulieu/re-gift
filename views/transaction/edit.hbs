@@ -1,0 +1,22 @@
+{{#if userInSession}}
+<h1>Edit the transation status with {{giftproposed.user.username}}</h1>
+
+<form action="/transaction/{{transactionsIamaskedfor.id}}" method="POST">
+
+  <label>
+      Status
+      <select multiple name="statut">
+        <option value="accept">Accept</option>
+        <option value="decline">Decline</option>
+      </select>
+  </label>
+
+  
+   <button>Edit</button>
+  
+</form>
+
+<a href="/profile">Return to my profile</a>
+{{else}}
+  <p>Connectez-vous!</p>
+{{/if}}
