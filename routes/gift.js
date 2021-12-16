@@ -17,10 +17,10 @@ router.get('/mygifts/add', (req, res) => {
 
 // traitement formulaire add gift
 router.post('/mygifts', (req, res) => {
-    const { name, category, brand, description } = req.body;
+    const { name, category, brand, description, available } = req.body;
     const user = req.session.user._id
     console.log('user: ', user)
-    Gift.create({ name, category, brand, description, user })
+    Gift.create({ name, category, brand, description, user, available })
         .then(createdgift => {
             console.log(`createdgift: ${createdgift}`)
             res.redirect('/profile');
@@ -45,7 +45,8 @@ router.get('/mygifts/:id', (req, res) => {
         .then((giftDetails) => {
             res.render('gift/description', {
                 giftDetails,
-                userInSession: req.session.user})
+                userInSession: req.session.user
+            })
         })
         .catch(error => {
             console.log(`error on gift details: ${error}`)
@@ -73,7 +74,8 @@ router.get('/mygifts/:id/edit', (req, res) => {
         .then((giftToEdit) => {
             res.render('gift/edit', {
                 giftToEdit,
-                userInSession: req.session.user})
+                userInSession: req.session.user
+            })
         })
         .catch(error => {
             console.log(`Error during the update of the current gift details: ${error}`)
@@ -123,7 +125,7 @@ router.get('/gifts/category', (req, res) => {
     console.log('req.query: ', req.query)
     console.log('req.query.name: ', req.query.name)
 
-    Gift.find({ category: req.query.name })
+    Gift.find({ category: req.query.name, available: true })
         .populate('user')
         .then((giftsOfSelectedCategory) => {
             console.log('gift: ', giftsOfSelectedCategory)
@@ -153,7 +155,8 @@ router.get('/gifts/:id', (req, res) => {
                     res.render('othersgift/details', {
                         giftDetails,
                         giftsFromDb,
-                        userInSession: req.session.user})
+                        userInSession: req.session.user
+                    })
                 })
         })
         .catch(error => {
