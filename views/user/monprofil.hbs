@@ -1,19 +1,19 @@
 {{#if userInSession}} 
     <h2>{{userInSession.firstname}} {{userInSession.lastname}}</h2>
-    <img src="" alt="userAvatar"/>
+    <img src="{{userInSession.avatar}}" alt="userAvatar"/>
     <a href="/mygifts/add">Add a gift</a>
-    <a href="/transactionsstatus">Exchanges status</a>
-    {{!-- <a href="/mesfavoris">Mes favoris</a> --}}
-
+    <a href="/transactionsstatus">My barters</a>
+    
     <div>
-        <h3>Ma liste de cadeaux</h3>
-        
+        <h3>My gifts list</h3>
         {{#each giftFromDb}}
-          <img src="" alt="giftImg"/>
+          <img src="{{this.picture}}" alt="giftImg"/>
           <a href="/mygifts/{{id}}">{{name}}</a>
           <a href="/mygifts/{{id}}/edit">Update</a>
+          
         {{/each}}
     </div>
+
 {{else}}
-    <p>Connectez-vous !</p>
+    <p>Log in</p>
 {{/if}}

@@ -1,16 +1,16 @@
-<form action="/signup" method="POST">
+<form action="/signup" method="POST" enctype="multipart/form-data">
     <label>
-        Prénom
+        Firstname
         <input type="text" name="firstname">
     </label>
 
     <label>
-        Nom
+        Lastname
         <input type="text" name="lastname">
     </label>
 
     <label>
-        Nom d'utilisateur
+        Username
         <input type="text" name="username">
     </label>
 
@@ -20,27 +20,26 @@
     </label>
 
     <label>
-        Mot de passe
+        Password
         <input type="password" name="password">
     </label>
 
-    {{!-- <input id="image" type="file" name="profile_photo" placeholder="Photo" required="" capture> --}}
-    {{!-- <label>
-        Photo de profil
-        <input type="text" name="avatar">
-    </label> --}}
+    <label>
+        Avatar
+        <input id="image" type="file" name="image"/>
+    </label>
 
     <label>
-        Ville
+        City
         <input type="text" name="city">
     </label>
 
     <label>
-        Code postal
+        ZIP
         <input type="text" name="zip">
     </label>
 
-    <button>Je crée mon compte</button>
+    <button>Create my account</button>
     
 </form>
 

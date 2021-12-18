@@ -12,11 +12,11 @@
    <body>
       <nav id="nav">
         <a href="/"><img src="/images/logo.png" alt="logo"/></a>
-        <a href="/gifts">Les cadeaux</a>
-        <a href="/lesassociations">Les associations</a>
-        <a href="/login">Mon compte</a>
+        <a href="/gifts">The gifts</a>
+        <a href="/login">My account</a>
         {{#if userInSession }}
-          <a href="/logout">Se déconnecter</a>
+          <a href="/logout">Log out</a>
+          <p>Hello {{userInSession.firstname}}</p>
         {{/if}}
       </nav><br><br>
 
@@ -25,9 +25,7 @@
       </main>
 
       <br><br><footer id="footer">
-         <a href="">Qui sommes nous ?</a>
-         <a href="">FAQ</a>
-         <a href="">Aide</a>
+        <p>&copy Cindy Confiant and Léa Beaulieu - Ironhack 2021</p> 
       </footer>
 
       <script src="/public/js/script.js"></script>

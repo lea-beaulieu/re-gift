@@ -1,14 +1,12 @@
 <div>
-  <h2>Nouvel utilisateur ?</h2>
-  <p>Vous n'avez pas encore de compte, n'hésitez plus et commencer à troquer.</p>
-  <a href="/signup">S'enregistrer avec son email</a>
-  {{!-- <a>Social login facebook</a>
-  <a>Social login google </a> --}}
+  <h2>New user ?</h2>
+  <p>Don't have an account yet ? No more hesitations, get one and start bartering.</p>
+  <a href="/signup">Become a barter</a>
 </div>
 
 
 <div>
-    <h2>J'ai déjà un compte</h2>
+    <h2>Already have an account</h2>
     
 <form action="/login" method="POST">
     <label>
@@ -19,7 +17,7 @@
         Password:
         <input type="password" name="password" placeholder="********">
     </label>
-    <button>Je me connecte</button>
+    <button>Log me</button>
 </form>
 
 {{#if errorMessage}}

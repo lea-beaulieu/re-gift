@@ -1,14 +1,12 @@
 {{#if userInSession}}
 <h2>"{{giftDetails.name}}" details</h2>
 
-  <img src="" alt="photo1">
-  <img src="" alt="photo2">
-  <img src="" alt="photo3">
-  <img src="" alt="photo4">
+  <img src="{{giftDetails.picture}}" alt="photo">
+
 
   <p>Description : {{giftDetails.description}}</p>
 
   <a href="/profile">Return to my profile</a>
 {{else}}
-  <p>Connectez-vous!</p>
+  <p>Log in</p>
 {{/if}}

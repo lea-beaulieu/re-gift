@@ -1,7 +1,7 @@
 {{#if userInSession}}
 <h1>Add a new gift</h1>
 
-<form action="/mygifts" method="POST">
+<form action="/mygifts" method="POST" enctype="multipart/form-data">
   <label>
       Name
       <input type="text" name="name">
@@ -28,15 +28,10 @@
       </textarea>
   </label>
 
-  {{!-- <label>
-      Photos
-      <select name="photos" multiple>
-        <option value="http://....">Photo1</option>
-        <option value="http://....">Photo2</option>
-        <option value="http://....">Photo3</option>
-        <option value="http://....">Photo4</option>
-      </select>
-  </label> --}}
+  <label>
+      Picture
+      <input type="file" name="pic"/>
+  </label>
 
    <button>Add</button>
   
@@ -44,5 +39,5 @@
 
 <a href="/profile">Return to my profile</a>
 {{else}}
-  <p>Connectez-vous!</p>
+  <p>Log in</p>
 {{/if}}

@@ -1,7 +1,7 @@
 {{#if userInSession}}
-<h1>Edit my gift {{giftToEdit.name}} </h1>
+<h1>Edit : "{{giftToEdit.name}}" </h1>
 
-<form action="/mygifts/{{giftToEdit.id}}/edit" method="POST">
+<form action="/mygifts/{{giftToEdit.id}}/edit" method="POST" enctype="multipart/form-data">
 
   <label>
       Name
@@ -13,7 +13,7 @@
       <select multiple name="category">
         <option value="books">Books</option>
         <option value="boxes">Boxes</option>
-        <option value="fragrances">fragrances</option>
+        <option value="fragrances">Fragrances</option>
         <option value="toys">Toys</option>  
       </select>
   </label>
@@ -29,10 +29,10 @@
       </textarea>
   </label>
 
-  {{!-- <label>
-      Photos
-      <input type="text" name="photos">
-  </label> --}}
+  <label>
+        Picture
+        <input type="file" name="picture" value="{{giftToEdit.picture}}"/>
+    </label>
 
    <button>Edit</button>
   
@@ -40,5 +40,5 @@
 
 <a href="/profile">Return to my profile</a>
 {{else}}
-  <p>Connectez-vous!</p>
+  <p>Log in</p>
 {{/if}}
