@@ -133,7 +133,7 @@ router.post("/login", (req, res, next) => {
 
   // Search the database for a user with the email submitted in the form
   User.findOne({ email })
-    .then((user) => {
+    .then(user => {
       // If the user isn't found, send the message that user provided wrong email
       if (!user) {
         res

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Gift = require("../models/Gift.model.js");
 const Transaction = require("../models/Transaction.model.js");
 const fileUploader = require('../config/cloudinary.config');
+const flash = require("express-flash");
 
 // ######  ########  ########    ###    ######## ######## 
 // ##    ## ##     ## ##         ## ##      ##    ##       
@@ -17,12 +18,18 @@ router.get('/mygifts/add', (req, res) => {
 })
 
 // Gift add form process
-router.post('/mygifts', fileUploader.single('pic'), (req, res, next) => {
+router.post('/mygifts/add', fileUploader.single('picture'), (req, res, next) => {
   const { name, category, brand, description, available } = req.body;
-  const user = req.session.user._id;
+  const user = req.session.user;
   console.log('user: ', user);
-    
-  Gift.create({ name, category, brand, description, user, available, picture:req.file.path})
+  
+  // //Validation mandatory fields
+  if ( !name || !category || !description) {
+    res.render('gift/new', {userInSession: user, errorMessage: 'Please enter the gift name, category and description.' });
+    return;
+  }
+
+  Gift.create({ name, category, brand, description, user, available, picture: req.file.path})
     .then(createdgift => {
         console.log(`createdgift: ${createdgift}`);
         res.redirect('/profile');
@@ -44,7 +51,7 @@ router.post('/mygifts', fileUploader.single('pic'), (req, res, next) => {
 
 router.get('/mygifts/:id', (req, res, next) => {
   Gift.findById(req.params.id)
-    .then((giftDetails) => {
+    .then(giftDetails => {
       res.render('gift/description', {
         giftDetails,
         userInSession: req.session.user
@@ -52,7 +59,7 @@ router.get('/mygifts/:id', (req, res, next) => {
     })
     .catch(error => {
       console.log(`error on gift details: ${error}`);
-        res.render('user/monprofil', { errorMessage: 'Error on reading gift details.' });
+        res.render('user/myprofile', { errorMessage: 'Error on reading gift details.' });
         next(error);
     })
 })
@@ -179,17 +186,28 @@ router.get('/gifts/:id', (req, res, next) => {
 // // ##     ## ##       ##       ##          ##    ##       
 // // ########  ######## ######## ########    ##    ######## 
 
-// // Only possible is gift is avaible (make it only possible if transaction is not initiated)
-// router.post('/mygifts/:id/delete', (req, res, next) => {
-
-//   Gift.findByIdAndRemove(req.params.id)
-//     .then(deleteGift => {
-//       res.redirect('/profile')
-//     })
-//     .catch(error => {
-//       console.log(error);
-//       next(error);
-//     })
-// })
+// Only possible is gift is avaible and not in an initiated transaction
+router.post('/mygifts/:id/delete', (req, res, next) => {
+  const user = req.session.user;
+  Transaction.find({giftB:req.params.id })
+    .then(gifts => {
+    console.log('gifts: ', gifts);
+      if(gifts.length === 0 ){
+        Gift.findByIdAndRemove(req.params.id)
+          .then(deleteGift => {
+            res.redirect('/profile')
+          })
+          .catch(error => {
+            console.log(error);
+            // res.status(401).send
+            next(error);
+          }) 
+      } else {
+        req.flash("error", "You cannot delete this gift while it is in a transaction.");
+        res.redirect('/profile');
+      }
+    })
+    .catch(error => next(error));
+})
 
 module.exports = router;

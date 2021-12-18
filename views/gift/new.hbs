@@ -1,7 +1,7 @@
 {{#if userInSession}}
 <h1>Add a new gift</h1>
 
-<form action="/mygifts" method="POST" enctype="multipart/form-data">
+<form action="/mygifts/add" method="POST" enctype="multipart/form-data">
   <label>
       Name
       <input type="text" name="name">
@@ -30,14 +30,21 @@
 
   <label>
       Picture
-      <input type="file" name="pic"/>
+      <input type="file" name="picture"/>
   </label>
 
    <button>Add</button>
   
+  {{#if errorMessage}}
+   <h2>{{errorMessage}}</h2>
+  {{/if}}
+
 </form>
 
 <a href="/profile">Return to my profile</a>
+
+
+
 {{else}}
   <p>Log in</p>
 {{/if}}

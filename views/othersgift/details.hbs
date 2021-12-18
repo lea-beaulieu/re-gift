@@ -19,6 +19,10 @@
   <button>Offer a barter</button>
 </form>
 
+  {{#if messages.error}}
+    <h2>{{messages.error}}</h2>
+  {{/if}}
+
 <a href="/profile">Return to my profile</a>
 {{else}}
   <p>Log in</p>

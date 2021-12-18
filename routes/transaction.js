@@ -13,20 +13,30 @@ const Transaction = require("../models/Transaction.model.js");
 // Transaction form process
 router.post('/gifts/:id', (req, res, next) => {
   console.log('req.body: ', req.body);
-  Transaction.create({
-    giftA: req.params.id,
-    giftB: req.body.mygifts,
-    status: 'initiated',
-  })
-  .then(transaction => {
-    console.log('transaction: ', transaction)
-    res.redirect('/transactionsstatus')
-    })
-  .catch(error => {
-    console.log(`transaction error: ${error}`);
-    res.redirect('/gifts');
-    next(error);
-    })
+  // Only if my gift (giftB) is not already in an other transaction 
+  Transaction.find({giftB:req.body.mygifts})
+  .then(gifts => {
+    console.log('gifts: ', gifts);
+      if(gifts.length === 0 ){
+        Transaction.create({
+          giftA: req.params.id,
+          giftB: req.body.mygifts,
+          status: 'initiate',
+        })
+        .then(transaction => {
+          console.log('transaction: ', transaction)
+          res.redirect('/transactionsstatus')
+          })
+        .catch(error => {
+          console.log(`transaction error: ${error}`);
+          res.redirect('/gifts');
+          next(error);
+        })
+      } else {
+        req.flash("error", "This gift is already in a transaction. Please choose another one.");
+        res.redirect('/gifts/' + req.params.id);
+      }
+  }).catch(error => next(error))
 })
 
 // ##       ####  ######  ######## #### ##    ##  ######   

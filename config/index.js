@@ -21,12 +21,16 @@ const path = require("path");
 // https://www.npmjs.com/package/express-session
 const session = require("express-session");
 
+//Flash
+const flash = require("express-flash");
+
 // ℹ️ MongoStore in order to save the user session in the database
 // https://www.npmjs.com/package/connect-mongo
 const MongoStore = require("connect-mongo");
 
 // Connects the mongo uri to maintain the same naming structure
 const MONGO_URI = require("../utils/consts");
+
 
 // Middleware configuration
 module.exports = (app) => {
@@ -37,6 +41,8 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+  
+  
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
@@ -54,11 +60,12 @@ module.exports = (app) => {
   app.use(
     session({
       secret: process.env.SESSION_SECRET || "super hyper secret key",
-      resave: false,
+      resave: true,
       saveUninitialized: true,
       store: MongoStore.create({
         mongoUrl: MONGO_URI,
       }),
     })
   );
+  app.use(flash());
 };

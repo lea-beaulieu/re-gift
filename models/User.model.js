@@ -9,7 +9,7 @@ const userSchema = new Schema({
     },
   email: {
     type: String,
-    match:  [/^\S+@\S+\.\S+$/, 'Merci de renseigner une adresse email valide.'],
+    match:  [/^\S+@\S+\.\S+$/, 'Please enter a valid email.'], // Validation
     unique: true,
     lowercase: true,
     trim: true,
@@ -18,7 +18,7 @@ const userSchema = new Schema({
   city: String,
   zip: {
     type: String,
-    match: [/([0-9]{5})$/, 'Veuillez entrer un code postal français.'],
+    match: [/([0-9]{5})$/, 'Please enter a french ZIP code.'], // Validation
     },
   avatar: String,  
   },

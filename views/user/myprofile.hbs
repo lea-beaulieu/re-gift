@@ -10,10 +10,16 @@
           <img src="{{this.picture}}" alt="giftImg"/>
           <a href="/mygifts/{{id}}">{{name}}</a>
           <a href="/mygifts/{{id}}/edit">Update</a>
-          
+          <form action="/mygifts/{{id}}/delete" method="POST">
+            <button>Delete</button>
+          </form>
         {{/each}}
     </div>
 
-{{else}}
+  {{#if messages.error}}
+    <h2>{{messages.error}}</h2>
+  {{/if}}
+
+  {{else}}
     <p>Log in</p>
 {{/if}}
