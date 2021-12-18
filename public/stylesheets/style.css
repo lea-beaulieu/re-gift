@@ -1,31 +1,23 @@
 body {
-  padding: 50px;
+  justify-content: center;
+  align-items: center;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: rgb(243, 243, 243);
+  position: relative;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
-  color: #00b7ff;
+  text-decoration: none;
+  color: inherit;
 }
 
 h1 {
   color: 15px;
 }
 
-/* Style pour mieux visualiser le code uniquement */
-nav {
-  border: 2px solid #f51515c4;
-}
-
-footer {
-  border: 2px solid #f51515c4;
-}
-
-#accueil img {
-  width: 500px;
-}
-
-#nav img {
-  width: 100px;
+main {
+  padding-top: 6%;
 }
 
 #gifts img {
@@ -34,4 +26,187 @@ footer {
 
 img {
   width: 100px;
+}
+
+
+/* 
+#     #    #    #     #    ######     #    ######  
+##    #   # #   #     #    #     #   # #   #     # 
+# #   #  #   #  #     #    #     #  #   #  #     # 
+#  #  # #     # #     #    ######  #     # ######  
+#   # # #######  #   #     #     # ####### #   #   
+#    ## #     #   # #      #     # #     # #    #  
+#     # #     #    #       ######  #     # #     # 
+Style pour mieux visualiser le code uniquement */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  height: 15%;
+  width: 100%;
+  background: rgb(179, 5, 34);
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.3);
+}
+
+nav>h1 {
+  margin: 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 3rem;
+  text-shadow: 2px 2px 0px rgb(225, 20, 68), 4px 4px 0px rgba(255, 255, 255, 0.4);
+  padding-left: 2%;
+}
+
+.logo {
+  display: inline-block;
+}
+
+
+/*
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
+*/
+
+.menu-item {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.menu-item a {
+  font-weight: 400;
+  font-size: 120%;
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+
+/* Surlignage des liens du menu */
+
+.menu-item a:hover {
+  background-color: #144d2b;
+}
+
+#nav img {
+  width: 100px;
+}
+
+#accueil img {
+  width: 500px;
+  height: auto;
+}
+
+
+/*
+####### ####### ####### ####### ####### ######  
+#       #     # #     #    #    #       #     # 
+#       #     # #     #    #    #       #     # 
+#####   #     # #     #    #    #####   ######  
+#       #     # #     #    #    #       #   #   
+#       #     # #     #    #    #       #    #  
+#       ####### #######    #    ####### #     # 
+*/
+
+footer {
+  background: rgb(179, 5, 34);
+  text-align: center;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 100%;
+}
+
+.container-auth {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+
+/*
+######  ####### #     #     #####  ###  #####  #     #    #     # ######  
+#     # #     #  #   #     #     #  #  #     # ##    #    #     # #     # 
+#     # #     #   # #      #        #  #       # #   #    #     # #     # 
+######  #     #    #        #####   #  #  #### #  #  #    #     # ######  
+#     # #     #   # #            #  #  #     # #   # #    #     # #       
+#     # #     #  #   #     #     #  #  #     # #    ##    #     # #       
+######  ####### #     #     #####  ###  #####  #     #     #####  #  
+*/
+
+.box-auth {
+  text-align: center;
+  padding: 5%;
+  background: white;
+  max-width: 30em;
+  margin: 6% 2%;
+  box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+  background: url("/images/giftbg.jpeg");
+  background-size: 50%;
+  background-position: center;
+  /*box-sizing: border-box;*/
+}
+
+.box-auth button {
+  margin: 10px 0;
+  padding: 10px 50px;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 140%;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background: rgb(179, 5, 34);
+  transition: linear 0.3s;
+  white-space: pre-line;
+}
+
+.box-auth button:hover {
+  color: rgba(179, 5, 34, 0.8);
+  border: 2px solid rgba(179, 5, 34, 0.8);
+  background: none;
+}
+
+.box-auth h2 {
+  font-size: 180%;
+  color: rgb(179, 5, 34);
+}
+
+.box-auth a {
+  margin: 10px 0;
+  padding: 10px 50px;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 140%;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background: rgb(179, 5, 34);
+  transition: linear 0.3s;
+}
+
+.box-auth a:hover {
+  color: rgba(179, 5, 34, 0.8);
+  border: 2px solid rgba(179, 5, 34, 0.8);
+  background: none;
+}
+
+input {
+  background-color: white;
+  opacity: 0.5;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 80%;
 }
