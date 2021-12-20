@@ -76,8 +76,18 @@ router.get('/mygifts/:id', (req, res, next) => {
 router.get('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next) => {
   Gift.findById(req.params.id)
     .then(giftToEdit => {
+      const categories = [{name:'books'}, {name:'boxs'} , {name:'fragrances'}, {name:'toys'} ];
+      categories.forEach(category => {
+        console.log('giftToEdit.category: ', giftToEdit.category)
+        console.log('category: ', category)
+        console.log('category.name', category.name)
+        if (giftToEdit.category === category.name) {
+          category.selected = true;
+        }
+      })
       res.render('gift/edit', {
         giftToEdit,
+        categories,
         userInSession: req.session.user
       })
     })
@@ -186,7 +196,7 @@ router.get('/gifts/:id', (req, res, next) => {
 // // ##     ## ##       ##       ##          ##    ##       
 // // ########  ######## ######## ########    ##    ######## 
 
-// Only possible is gift is avaible and not in an initiated transaction
+// Only possible if gift is avaible and not in an initiated transaction
 router.post('/mygifts/:id/delete', (req, res, next) => {
   const user = req.session.user;
   Transaction.find({giftB:req.params.id })
