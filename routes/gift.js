@@ -199,25 +199,26 @@ router.get('/gifts/:id', (req, res, next) => {
 // Only possible if gift is avaible and not in an initiated transaction
 router.post('/mygifts/:id/delete', (req, res, next) => {
   const user = req.session.user;
-  Transaction.find({giftB:req.params.id })
+  Transaction.find({giftB:req.params.id})
     .then(gifts => {
-    console.log('gifts: ', gifts);
-      if(gifts.length === 0 ){
-        Gift.findByIdAndRemove(req.params.id)
-          .then(deleteGift => {
-            res.redirect('/profile')
-          })
-          .catch(error => {
-            console.log(error);
-            // res.status(401).send
-            next(error);
-          }) 
-      } else {
-        req.flash("error", "You cannot delete this gift while it is in a transaction.");
-        res.redirect('/profile');
-      }
-    })
-    .catch(error => next(error));
+      Transaction.find({gitA:req.params.id})
+        .then(gifts => {
+          console.log('gifts: ', gifts);
+          if(gifts.length === 0 ){
+            Gift.findByIdAndRemove(req.params.id)
+              .then(deleteGift => {
+                res.redirect('/profile')
+              })
+              .catch(error => {
+                console.log(error);
+                next(error);
+              }) 
+          } else {
+           req.flash("error", "You cannot delete this gift while it is in a transaction.");
+           res.redirect('/profile');
+          }
+        }).catch(error => next(error))       
+    }).catch(error => next(error)) 
 })
 
 module.exports = router;
