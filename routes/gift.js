@@ -76,18 +76,18 @@ router.get('/mygifts/:id', (req, res, next) => {
 router.get('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next) => {
   Gift.findById(req.params.id)
     .then(giftToEdit => {
-      const categories = [{name:'books'}, {name:'boxs'} , {name:'fragrances'}, {name:'toys'} ];
-      categories.forEach(category => {
+      const category = [{name:'books'}, {name:'boxs'} , {name:'fragrances'}, {name:'toys'} ];
+      category.forEach(categ => {
         console.log('giftToEdit.category: ', giftToEdit.category)
-        console.log('category: ', category)
-        console.log('category.name', category.name)
-        if (giftToEdit.category === category.name) {
-          category.selected = true;
+        console.log('categ: ', categ)
+        console.log('categ.name', categ.name)
+        if (giftToEdit.category === categ.name) {
+          categ.selected = true;
         }
       })
       res.render('gift/edit', {
         giftToEdit,
-        categories,
+        category,
         userInSession: req.session.user
       })
     })
@@ -105,8 +105,9 @@ router.post('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next
   if (req.file) {
     picture= req.file.path;
   }
-
+  
   const { name, category, brand, description} = req.body;
+  console.log('reqbodycategory: ', category)
 
   Gift.findByIdAndUpdate(req.params.id, { name, category, brand, description, picture}, { new: true })
     .then(editedgift => {

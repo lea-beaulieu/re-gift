@@ -1,10 +1,11 @@
 {{#if userInSession}}
- <h2>"{{giftDetails.name}}" proposed by {{giftDetails.user.username}} ({{giftDetails.user.city}})</h2>
+ <h2>"{{giftDetails.name}}" - {{giftDetails.brand}}</h2>
 
   <img src="{{giftDetails.picture}}" alt="photo">
+  
+  <p>Proposed by: {{giftDetails.user.username}} ({{giftDetails.user.city}} {{giftDetails.user.zip}}) </p>
 
   <p>Description : {{giftDetails.description}}</p>
-
 
  <form action="/gifts/{{giftDetails.id}}" method="POST">
   <label>

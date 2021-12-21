@@ -11,8 +11,8 @@
   <label>
       Category
       <select multiple name="category">
-        {{#each categories}}
-        <option value="{{category.name}}" {{#if selected}}selected="selected"{{/if}}>{{name}}</option>
+        {{#each category}}
+        <option value="{{name}}" {{#if selected}}selected="selected"{{/if}}>{{name}}</option>
         {{/each}}  
       </select>
   </label>
