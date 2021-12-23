@@ -97,7 +97,7 @@ router.get('/transaction/:id', (req, res, next) => {
               giftproposed,
               userInSession: req.session.user
             })
-        }).catch(err => next(err));
+        }).catch(error => next(error));
     })
     .catch(error => {
         console.log(`Error while accessing the transaction to update: ${error}`);

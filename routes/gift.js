@@ -23,13 +23,15 @@ router.post('/mygifts/add', fileUploader.single('picture'), (req, res, next) => 
   const user = req.session.user;
   console.log('user: ', user);
   
-  // //Validation mandatory fields
+  // Validation mandatory fields
   if ( !name || !category || !description) {
     res.render('gift/new', {userInSession: user, errorMessage: 'Please enter the gift name, category and description.' });
     return;
   }
 
-  Gift.create({ name, category, brand, description, user, available, picture: req.file.path})
+  Gift.create({ name, category, brand, description, user, available, 
+    // default image or upload by user
+    picture: req.file && req.file.path || "https://res.cloudinary.com/hkxgywr9f/image/upload/v1640257080/Regift/default_tohhzr.jpg"})
     .then(createdgift => {
         console.log(`createdgift: ${createdgift}`);
         res.redirect('/profile');
@@ -107,7 +109,6 @@ router.post('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next
   }
   
   const { name, category, brand, description} = req.body;
-  console.log('reqbodycategory: ', category)
 
   Gift.findByIdAndUpdate(req.params.id, { name, category, brand, description, picture}, { new: true })
     .then(editedgift => {
@@ -189,13 +190,13 @@ router.get('/gifts/:id', (req, res, next) => {
     })
 })
 
-// // ########  ######## ##       ######## ######## ######## 
-// // ##     ## ##       ##       ##          ##    ##       
-// // ##     ## ##       ##       ##          ##    ##       
-// // ##     ## ######   ##       ######      ##    ######   
-// // ##     ## ##       ##       ##          ##    ##       
-// // ##     ## ##       ##       ##          ##    ##       
-// // ########  ######## ######## ########    ##    ######## 
+// ########  ######## ##       ######## ######## ######## 
+// ##     ## ##       ##       ##          ##    ##       
+// ##     ## ##       ##       ##          ##    ##       
+// ##     ## ######   ##       ######      ##    ######   
+// ##     ## ##       ##       ##          ##    ##       
+// ##     ## ##       ##       ##          ##    ##       
+// ########  ######## ######## ########    ##    ######## 
 
 // Only possible if gift is avaible and not in an initiated transaction
 router.post('/mygifts/:id/delete', (req, res, next) => {
