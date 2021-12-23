@@ -11,10 +11,14 @@
         {{#each giftFromDb}}
           <img src="{{this.picture}}" alt="giftImg"/>
           <a href="/mygifts/{{id}}">{{name}}</a>
-          <a href="/mygifts/{{id}}/edit">Update</a>
-          <form action="/mygifts/{{id}}/delete" method="POST">
-            <button>Delete</button>
-          </form>
+          <p>Available : {{this.available}}</p>
+          
+          {{#if available}}
+            <a href="/mygifts/{{id}}/edit">Update</a>
+            <form action="/mygifts/{{id}}/delete" method="POST">
+              <button>Delete</button>
+            </form>
+          {{/if}}
         {{/each}}
     </div>
 
