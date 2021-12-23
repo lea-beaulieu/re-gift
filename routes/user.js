@@ -15,28 +15,32 @@ router.get('/profile', (req, res, next) => {
     res.redirect('/login')
   }
   // READ user's gifts on profile page
-  Gift.find({user: req.session.user._id, available : true})
+  Gift.find({user: req.session.user._id})
     .then(giftFromDb => {
       mygiftsIds = [];
         for (let i =0; i<giftFromDb.length; i++) {
           mygiftsIds.push(giftFromDb[i].id);
         }
         // letting user knows the number of barters waiting for a response
-        Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $ne: 'decline'}})
-          .populate('giftA')
-          .then(transactionsIamaskedfor => {
-            console.log('transactionIamaskedfor: ', transactionsIamaskedfor);
-            res.render('user/myprofile', {
-              userInSession: req.session.user,
-              giftFromDb: giftFromDb,
-              transactionsIamaskedfor
-            })
+        Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $eq: 'initiate'}})
+          .then(transactionswaitingforanswer => {
+            // letting user knows the number of responses to the barters he has proposed
+            Transaction.find({giftB:{ $in: mygiftsIds}, status:{ $ne: 'initiate'}})
+              .then(transactionsanswered => {
+                console.log('transactions answered : ', transactionsanswered);
+                res.render('user/myprofile', {
+                  userInSession: req.session.user,
+                  giftFromDb: giftFromDb,
+                  transactionswaitingforanswer,
+                  transactionsanswered
+                })
+              }).catch(error => next(error))
           }).catch(error => next(error))
       })
       .catch (error =>{
         console.log(`error while listing gift from Db:' ${error}`);
         next(error);
-      }) 
+      })
 })
 
 module.exports = router;

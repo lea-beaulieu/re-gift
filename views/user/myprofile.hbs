@@ -2,7 +2,8 @@
     <h2>{{userInSession.firstname}} {{userInSession.lastname}}</h2>
     <img src="{{userInSession.avatar}}" alt="userAvatar"/>
     <a href="/mygifts/add">Add a gift</a>
-    <p>Barter(s) waiting for your response : {{transactionsIamaskedfor.length}}</p>
+    <p>Barter(s) waiting for your response : {{transactionswaitingforanswer.length}}</p>
+    <p>Answer(s) to my proposed barter(s): {{transactionsanswered.length}}</p>
     <a href="/transactionsstatus">My barters</a>
     
     <div>
