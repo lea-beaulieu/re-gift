@@ -31,7 +31,6 @@ const MongoStore = require("connect-mongo");
 // Connects the mongo uri to maintain the same naming structure
 const MONGO_URI = require("../utils/consts");
 
-
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -42,8 +41,6 @@ module.exports = (app) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   
-  
-
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars

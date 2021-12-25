@@ -48,32 +48,42 @@ router.post('/gifts/:id', (req, res, next) => {
 // ######## ####  ######     ##    #### ##    ##  ######   
 
 router.get('/transactionsstatus', (req, res) => {
-  Gift.find({ user: req.session.user._id})
+  Gift.find({user: req.session.user._id})
     .then(mygifts => {
       var mygiftsIds = [];
-        for (let i = 0; i < mygifts.length; i++) {
-          mygiftsIds.push(mygifts[i].id);
-        }
+      for (let i =0; i<mygifts.length; i++) {
+        mygiftsIds.push(mygifts[i].id);
+      }
       console.log('mygifts: ', mygifts)
       console.log('mygiftsIds: ', mygiftsIds)
-      Transaction.find({ giftB: { $in: mygiftsIds } })
+      Transaction.find({giftB:{ $in: mygiftsIds}, status:{ $eq:'initiate'}})
         .populate('giftA')
         .populate('giftB')
-        .then(transactionsIaskedfor => {
+        .then(transactionsIaskedfor=> {
           console.log('transactionIaskedfor: ', transactionsIaskedfor)
-          Transaction.find({ giftA: { $in: mygiftsIds } })
+          Transaction.find({giftB:{ $in: mygiftsIds}, status:{ $ne:'initiate'}})
             .populate('giftA')
             .populate('giftB')
-            .then(transactionsIamaskedfor => {
-                console.log('transactionIamaskedfor: ', transactionsIamaskedfor)
-                res.render('transaction/status', { mygifts, transactionsIaskedfor, transactionsIamaskedfor, userInSession: req.session.user })
-            })
-        })
+            .then(answeredtransactionsIaskedfor=> {
+              Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $eq:'initiate'}})
+              .populate('giftA')
+              .populate('giftB')
+              .then(transactionsIamaskedfor=> {
+                Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $ne:'initiate'}})
+                .populate('giftA')
+                .populate('giftB')
+                .then(transactionsupdated=> {
+                  console.log('transactionIamaskedfor: ', transactionsIamaskedfor);
+                  res.render('transaction/status', {mygifts, transactionsIaskedfor, answeredtransactionsIaskedfor, transactionsIamaskedfor, transactionsupdated, userInSession: req.session.user }) 
+                }).catch(error => next(error));
+              }).catch(error => next(error));
+          }).catch(error => next(error));
+        }).catch(error => next(error));
     })
     .catch(error => {
-        console.log(`listing error: ${error}`);
-        next(error);
-    })
+      console.log(`listing error: ${error}`);
+      next(error);
+    })  
 })
 
 // ##     ## ########  ########     ###    ######## ######## 
@@ -97,7 +107,7 @@ router.get('/transaction/:id', (req, res, next) => {
               giftproposed,
               userInSession: req.session.user
             })
-        }).catch(err => next(err));
+        }).catch(error => next(error));
     })
     .catch(error => {
         console.log(`Error while accessing the transaction to update: ${error}`);
@@ -140,45 +150,6 @@ router.post('/transaction/:id', (req, res, next) => {
         res.render('transaction/edit', { errorMessage: 'Error while editing the transaction status.' });
         next(error);
     })
-    
-    //CALLBACK HELL
-    // Transaction.findByIdAndUpdate(req.params.id, { status: status }, { new: true })
-    //     .then(editedstatustransaction => {
-    //         Gift.findById(editedstatustransaction.giftB)
-    //             .populate('user')
-    //             .then(giftproposed => {
-    //                 console.log('userToContact: ', giftproposed.user)
-    //                 console.log(`The transaction with the new status is: ${editedstatustransaction}.`)
-    //                 if (req.body.status === 'accept') {
-
-
-    //                     Gift.findByIdAndUpdate(editedstatustransaction.giftB, { available: false }, { new: true })
-    //                         .then(availableStatus => {
-    //                             console.log(`The new status of the gift B is after answer ${availableStatus}`)
-
-    //                             Gift.findByIdAndUpdate(editedstatustransaction.giftA, { available: false }, { new: true })
-    //                                 .then(availableStatus => {
-    //                                     console.log(`The new status of the gift A is after answer ${availableStatus}`)
-
-    //                                     res.render('transaction/contact', {
-    //                                         editedstatustransaction,
-    //                                         giftproposed,
-    //                                         userInSession: req.session.user
-    //                                     })
-
-    //                                 })
-
-
-    //                         })
-    //                 } else {
-    //                     res.redirect('/transactionsstatus')
-    //                 }
-    //             })
-    //     })
-    //     .catch(error => {
-    //         console.log(`error while updating the transaction status: ${error}`)
-    //         res.render('transaction/edit', { errorMessage: 'Error while editing the transaction status.' })
-    //     })
-
 })
+
 module.exports = router;

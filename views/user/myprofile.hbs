@@ -2,6 +2,8 @@
     <h2>{{userInSession.firstname}} {{userInSession.lastname}}</h2>
     <img src="{{userInSession.avatar}}" alt="userAvatar"/>
     <a href="/mygifts/add">Add a gift</a>
+    <p>Barter(s) waiting for your response : {{transactionswaitingforanswer.length}}</p>
+    <p>Answer(s) to my proposed barter(s): {{transactionsanswered.length}}</p>
     <a href="/transactionsstatus">My barters</a>
     
     <div>
@@ -9,10 +11,14 @@
         {{#each giftFromDb}}
           <img src="{{this.picture}}" alt="giftImg"/>
           <a href="/mygifts/{{id}}">{{name}}</a>
-          <a href="/mygifts/{{id}}/edit">Update</a>
-          <form action="/mygifts/{{id}}/delete" method="POST">
-            <button>Delete</button>
-          </form>
+          <p>Available : {{this.available}}</p>
+          
+          {{#if available}}
+            <a href="/mygifts/{{id}}/edit">Update</a>
+            <form action="/mygifts/{{id}}/delete" method="POST">
+              <button>Delete</button>
+            </form>
+          {{/if}}
         {{/each}}
     </div>
 

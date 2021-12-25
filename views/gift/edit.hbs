@@ -11,10 +11,9 @@
   <label>
       Category
       <select multiple name="category">
-        <option value="books">Books</option>
-        <option value="boxes">Boxes</option>
-        <option value="fragrances">Fragrances</option>
-        <option value="toys">Toys</option>  
+        {{#each category}}
+        <option value="{{name}}" {{#if selected}}selected="selected"{{/if}}>{{name}}</option>
+        {{/each}}  
       </select>
   </label>
 
