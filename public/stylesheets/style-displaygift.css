@@ -295,7 +295,7 @@ label {
 
 .displaygiftdetail-box-content button {
     padding: 10px 38px;
-    margin: 0 260px 0 260px;
+    margin: 10px 260px 0 260px;
     box-sizing: border-box;
     font-size: 100%;
     letter-spacing: 2px;
@@ -312,4 +312,5 @@ label {
     color: rgba(179, 5, 34, 0.8);
     border: 2px solid rgba(179, 5, 34, 0.8);
     background: none;
+    cursor: pointer;
 }

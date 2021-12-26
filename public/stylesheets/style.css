@@ -21,6 +21,7 @@ a {
 
 h1 {
     color: 15px;
+    text-transform: capitalize;
 }
 
 main {
@@ -53,6 +54,7 @@ nav {
     position: fixed;
     padding: 1em;
     width: 100vw;
+    max-height: 78px;
     background: rgb(179, 5, 34);
     /*#ff4444*/
     box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.3);
@@ -287,6 +289,8 @@ input {
 
 .box-signup-form button {
     display: flex;
+    text-align: center;
+    min-width: 100%;
     flex-flow: column;
     padding: 10px 50px;
     margin: 5px 0 0 0;
@@ -306,6 +310,7 @@ input {
     color: rgba(179, 5, 34, 0.8);
     border: 2px solid rgba(179, 5, 34, 0.8);
     background: none;
+    cursor: pointer;
 }
 
 .signup-input {
@@ -409,4 +414,68 @@ h1 {
     padding: 10px;
     border-radius: 5px;
     z-index: 98;
+}
+
+
+/*
+
+   ###    ########  ########        ## ######## ########  #### ########     ######   #### ######## ######## 
+  ## ##   ##     ## ##     ##      ##  ##       ##     ##  ##     ##       ##    ##   ##  ##          ##    
+ ##   ##  ##     ## ##     ##     ##   ##       ##     ##  ##     ##       ##         ##  ##          ##    
+##     ## ##     ## ##     ##    ##    ######   ##     ##  ##     ##       ##   ####  ##  ######      ##    
+######### ##     ## ##     ##   ##     ##       ##     ##  ##     ##       ##    ##   ##  ##          ##    
+##     ## ##     ## ##     ##  ##      ##       ##     ##  ##     ##       ##    ##   ##  ##          ##    
+##     ## ########  ########  ##       ######## ########  ####    ##        ######   #### ##          ##
+
+*/
+
+
+/* ADD AND EDIT GIFT CSS IS BASED ON SIGNUP FORM CSS, FEW EXCEPTION SUCH AS BUTTON APPLIES */
+
+.button-addgift button {
+    /*100% of my box - padding*/
+    width: 100%;
+    min-width: 100%;
+    padding-left: 100px;
+    margin-top: 10px;
+}
+
+.button-editgift button {
+    /*100% of my box - padding*/
+    width: 100%;
+    min-width: 100%;
+    padding-left: 70px;
+    margin-top: 10px;
+}
+
+textarea {
+    align-self: center;
+    color: rgb(0, 0, 0);
+    background-color: lightgray;
+    opacity: 0.5;
+    border-style: solid;
+    border-color: rgb(185, 185, 185);
+    border-width: 0.5px;
+    outline: none;
+    padding: 4px 8px;
+    margin: 0px 0px 5px 0px;
+    width: 250px;
+    min-height: 60px;
+    border-radius: 18px;
+}
+
+select {
+    align-self: center;
+    color: rgb(0, 0, 0);
+    background-color: lightgray;
+    opacity: 0.5;
+    border-style: solid;
+    border-color: rgb(185, 185, 185);
+    border-width: 0.5px;
+    outline: none;
+    padding: 4px 8px;
+    margin: 0px 0px 5px 0px;
+    width: 270px;
+    border-radius: 18px;
+    text-transform: capitalize;
 }
