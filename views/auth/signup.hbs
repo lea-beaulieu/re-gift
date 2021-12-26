@@ -1,48 +1,57 @@
-<form action="/signup" method="POST" enctype="multipart/form-data">
-    <label>
-        Firstname
-        <input type="text" name="firstname">
-    </label>
+<div class="container-signup-form">
 
-    <label>
-        Lastname
-        <input type="text" name="lastname">
-    </label>
+    <div class="box-signup-form ">
+        <h2>Create your Barter profile</h2>
 
-    <label>
-        Username
-        <input type="text" name="username">
-    </label>
+        <form action="/signup" method="POST" enctype="multipart/form-data">
+            <label>
+            <div class="signup-tag">First name</div>
 
-    <label>
-        Email
-        <input type="text" name="email">
-    </label>
+            <input class="signup-input" type="text" name="firstname">
+            </label>
 
-    <label>
-        Password
-        <input type="password" name="password">
-    </label>
+            <label>
+            <div class="signup-tag">Last name</div>
+            <input class="signup-input" type="text" name="lastname">
+            </label>
 
-    <label>
-        Avatar
-        <input id="image" type="file" name="image"/>
-    </label>
+            <label>
+            <div class="signup-tag">User name</div>
+            <input class="signup-input"  type="text" name="username">
+            </label>
 
-    <label>
-        City
-        <input type="text" name="city">
-    </label>
+            <label>
+            <div class="signup-tag">Email</div>
+            <input class="signup-input"  type="text" name="email">
+            </label>
 
-    <label>
-        ZIP
-        <input type="text" name="zip">
-    </label>
+            <label>
+            <div class="signup-tag">Password</div>
+            <input class="signup-input" type="password" name="password">
+            </label>
 
-    <button>Create my account</button>
-    
-</form>
+            <label>
+            <div class="signup-tag">Avatar</div>
+            <input class="signup-input"  id="image" type="file" name="image"/>
+            </label>
 
-{{#if errorMessage}}
-    <h2>{{errorMessage}}</h2>
-{{/if}}
+            <label>
+            <div class="signup-tag">City<div>
+            <input class="signup-input"  type="text" name="city">
+            </label>
+
+            <label>
+            <div class="signup-tag">ZIP</div>
+            <input class="signup-input" type="text" name="zip">
+            </label>
+
+            <button>Create my account</button>
+        
+        </form>
+
+        {{#if errorMessage}}
+        <h2>{{errorMessage}}</h2>
+        {{/if}}
+
+    </div>
+</div>
