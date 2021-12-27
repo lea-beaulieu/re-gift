@@ -38,10 +38,12 @@
           <button>Send my offer</button>
         </form>
     
-
+        <div class="message-error">
           {{#if messages.error}}
-          <h2>{{messages.error}}</h2>
+          <p>{{messages.error}}</p>
           {{/if}}
+        </div>
+
       </div>
     </div>
 

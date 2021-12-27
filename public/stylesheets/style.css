@@ -156,6 +156,12 @@ footer {
     font-size: 100%;
 }
 
+.message-error {
+    text-align: center;
+    font-weight: normal;
+    margin-top: 20px;
+}
+
 
 /*
 ######  ####### #     #     #####  ###  #####  #     #    #     # ######  

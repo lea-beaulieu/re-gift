@@ -95,18 +95,22 @@
         {{/each}}
         </div>
 
-     </li>
+      </li>
+      
     </ul>
-  </div>
+
+
+
 
 
 </div>
 
-
+<div class="message-error">
   {{#if messages.error}}
-    <h2>{{messages.error}}</h2>
+  <p>{{messages.error}}</p>
   {{/if}}
-
+</div>
+ 
   {{else}}
     <p>Log in</p>
 {{/if}}
