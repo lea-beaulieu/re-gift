@@ -1,10 +1,12 @@
 {{#if userInSession}} 
 <h1>Congrats for your transaction with {{giftproposed.user.username}}</h1>
 
-<p>You can contact {{giftproposed.user.username}} at {{giftproposed.user.email}} to discuss the details.</p>
+<p class="contact">You can contact {{giftproposed.user.username}} at <strong>{{giftproposed.user.email}}</strong> to discuss the details.</p>
 
+<div class="footer-previouspage">
 <a href="/transactionsstatus">Return to the transactions page</a>
+</div>
 
 {{else}}
-    <p>Log in</p>
+<a href="/login">Please log-in or sign-up to start tarding with our community !</a>
 {{/if}} 

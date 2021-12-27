@@ -1,44 +1,84 @@
+<link rel="stylesheet" href="/stylesheets/style-myprofile.css" />
 {{#if userInSession}} 
 
-<h1> My Barters </h1>
 
-<h2> Pending barters I have requested </h2>
 
-    {{#each transactionsIaskedfor}}
-    <p>Gift I would like to have : <a href="/gifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
-    <p>Gift I proposed: <a href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a></p>
-    <p>On : {{this.createdAt}}</p>
-    <p>Status : {{this.status}}</p>
-    {{/each}}
+<h1 class="status">My Barter Trades</h1>
 
-<h2> Answered barters I have requested </h2>
+<div class="container-status">
 
-    {{#each answeredtransactionsIaskedfor}}
-    <p>Gift I would like to have : <a href="/gifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
-    <p>Gift I proposed: <a href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a></p>
-    <p>On : {{this.createdAt}}</p>
-    <p>Status : {{this.status}}</p>
-    {{/each}}
+    <div class="box-status">
+        <h2 class="status">Sent Offer(s)</h2>
 
-<h2> Pending barters requested by other users </h2>
+        <div class="box-status-content">
+            <h3>Pending</h3>
+            
+                <div class="box-status-content-offer">
+                    {{#each transactionsIaskedfor}}
+                    <p> I am interested in the <a class="offer-item" href="/gifts/{{this.giftA.id}}">{{this.giftA.name}}</a>
+                    against my <a class="offer-item" href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a>.</p>
+                    <p class="transaction-id">Offer sent on : {{this.createdAt}}</p>
+                    <p class="transaction-status">Status : {{this.status}}</p>
+                
+                    {{!- implement with ul li to avoid the break-}}
+                    <br>
+                    {{/each}}
+                
+                    </div> 
 
-    {{#each transactionsIamaskedfor}}
-    <p>Gift I have : <a href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
-    <p>Gift proposed to me: <a href="/gifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}})</p>
-    <p>On : {{this.createdAt}}</p>
-    <p>Status (click to update) : <a href="/transaction/{{this.id}}">{{this.status}}</a></p>
-    {{/each}}
+            <h3>Finalized</h3>
+                <div class="box-status-content-offer">
+                    {{#each answeredtransactionsIaskedfor}}
+                    <p>I suggested to exchange the <a class="offer-item" href="/gifts/{{this.giftA.id}}">{{this.giftA.name}}</a>
+                    against my <a class="offer-item" href="/mygifts/{{this.giftB.id}}">{{this.giftB.name}}</a>.</p>
+                    <p class="transaction-id">On : {{this.createdAt}}</p>
+                    <p class="transaction-status">Status : {{this.status}}</p>
+                    {{!- implement with ul li to avoid the break-}}
+                    <br>
+                {{/each}}
+                </div>
+        </div>
+    
+    </div>
 
-<h2> Requested barters I had answered to</h2>
 
-    {{#each transactionsupdated}}
-    <p>Gift I have : <a href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a></p>
-    <p>Gift proposed to me: <a href="/gifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}})</p>
-    <p>On : {{this.createdAt}}</p>
-    <p>Status : {{this.status}}</p>
-    {{/each}}
+    <div class="box-status">
+        <h2 class="status"> Received Offer(s) </h2>
 
+        <div class="box-status-content">
+            <h3 class="status">Pending your approval</h3>
+
+            <div class="box-status-content-offer">
+                {{#each transactionsIamaskedfor}}
+                <p> <mark> Exchange my <a class="offer-item" href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a>
+                against the <a class="offer-item" href="/gifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}}) ? </mark></p>
+                <p class="transaction-id">On : {{this.createdAt}}</p>
+                <p class="transaction-status">Status (click to update) : <a href="/transaction/{{this.id}}">{{this.status}}</a></p>
+                {{!- implement with ul li to avoid the break-}}
+                <br>
+                {{/each}}
+            </div>
+
+            <h3 class="status">Finalized</h3>
+            <div class="box-status-content-offer">
+                {{#each transactionsupdated}}
+                <p>Traded my <a class="offer-item" href="/mygifts/{{this.giftA.id}}">{{this.giftA.name}}</a>
+                again the <a class="offer-item" href="/gifts/{{this.giftB.id}}">{{this.giftB.name}}</a> from {{this.giftB.brand}} (category : {{this.giftB.category}})</p>
+                <p class="transaction-id">On : {{this.createdAt}}</p>
+                <p class="transaction-status">Status : {{this.status}}</p>
+                {{!- implement with ul li to avoid the break-}}
+                <br>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer-previouspage">
 <a href="/profile">Return to my profile</a>
+
 {{else}}
     <p>Connectez-vous !</p>
 {{/if}} 
+</div>

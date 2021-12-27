@@ -1,3 +1,13 @@
+/*
+                                             
+ #####  #####   ####  ###### # #      ###### 
+ #    # #    # #    # #      # #      #      
+ #    # #    # #    # #####  # #      #####  
+ #####  #####  #    # #      # #      #      
+ #      #   #  #    # #      # #      #      
+ #      #    #  ####  #      # ###### ###### 
+ */
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -59,7 +69,6 @@
 }
 
 .middle-container {
-    border: 2px red;
     padding: 40px 20px 0 20px;
     max-width: 89%;
     flex-direction: row;
@@ -68,7 +77,6 @@
 .middle-container-box {
     background-color: rgb(228, 228, 228);
     box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
-    border: 2px red;
     padding: 15px 20px;
 }
 
@@ -165,6 +173,9 @@
     letter-spacing: 2px;
 }
 
+
+/* edit and delete buttons */
+
 .mygift-actions {
     display: flex;
     flex-direction: column;
@@ -219,4 +230,85 @@ button:hover {
     border: 1px solid rgba(179, 5, 34, 0.8);
     background: none;
     cursor: pointer;
+}
+
+
+/*                                                                
+ ##### #####    ##   #    #  ####    ##   ##### #  ####  #    #  ####  
+   #   #    #  #  #  ##   # #       #  #    #   # #    # ##   # #      
+   #   #    # #    # # #  #  ####  #    #   #   # #    # # #  #  ####  
+   #   #####  ###### #  # #      # ######   #   # #    # #  # #      # 
+   #   #   #  #    # #   ## #    # #    #   #   # #    # #   ## #    # 
+   #   #    # #    # #    #  ####  #    #   #   #  ####  #    #  ####
+*/
+
+.container-status {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    align-content: space-between;
+    padding: 0 15vw;
+    gap: 5px;
+}
+
+.box-status {
+    padding: 40px 20px 0 20px;
+    max-width: 89%;
+    flex-direction: row;
+}
+
+.box-status-content {
+    background-color: rgb(228, 228, 228);
+    box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+    padding: 15px 20px;
+}
+
+.box-status-content a:hover {
+    color: rgba(179, 5, 34, 0.8);
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+}
+
+.status h1 {
+    text-transform: uppercase;
+}
+
+.box-status-content h3 {
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #696969;
+}
+
+.box-status-content p {
+    margin: 0;
+    border-left: 4px solid rgba(179, 5, 34, 0.8);
+    padding-left: 5px;
+}
+
+.transaction-id {
+    font-size: 12px;
+    padding-bottom: 8px;
+    font-weight: 300;
+    text-align: justify;
+    color: #696969;
+}
+
+.transaction-status {
+    text-align: justify;
+    color: #696969;
+}
+
+.offer-item {
+    font-weight: 500;
+}
+
+mark {
+    color: white;
+    font-weight: 400;
+    background: radial-gradient( #ff4444, #FF8E64);
+    padding: 2px;
 }

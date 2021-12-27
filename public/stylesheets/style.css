@@ -299,10 +299,9 @@ input {
 }
 
 .box-signup-form button {
-    display: flex;
     text-align: center;
     min-width: 100%;
-    flex-flow: column;
+    /*flex-flow: column;*/
     padding: 10px 50px;
     margin: 5px 0 0 0;
     box-sizing: border-box;
@@ -363,7 +362,7 @@ h1 {
     color: rgb(179, 5, 34);
     width: 100vw;
     text-align: right;
-    margin: 0px 20px 0 0;
+    margin: 20px 20px 0 0;
 }
 
 .footer-previouspage a {
@@ -489,4 +488,18 @@ select {
     width: 270px;
     border-radius: 18px;
     text-transform: capitalize;
+}
+
+
+/*
+  ####   ####  #    # #####   ##    ####  ##### 
+ #    # #    # ##   #   #    #  #  #    #   #   
+ #      #    # # #  #   #   #    # #        #   
+ #      #    # #  # #   #   ###### #        #   
+ #    # #    # #   ##   #   #    # #    #   #   
+  ####   ####  #    #   #   #    #  ####    # 
+  */
+
+.contact {
+    text-align: center;
 }
