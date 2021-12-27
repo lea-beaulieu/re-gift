@@ -1,26 +1,107 @@
+<link rel="stylesheet" href="/stylesheets/style-myprofile.css" />
+
 {{#if userInSession}} 
-    <h2>{{userInSession.firstname}} {{userInSession.lastname}}</h2>
-    <img src="{{userInSession.avatar}}" alt="userAvatar"/>
-    <a href="/mygifts/add">Add a gift</a>
-    <p>Barter(s) waiting for your response : {{transactionswaitingforanswer.length}}</p>
-    <p>Answer(s) to my proposed barter(s): {{transactionsanswered.length}}</p>
-    <a href="/transactionsstatus">My barters</a>
+
+{{!-
+╔╦╗╔═╗╦╔╗╔  ╔═╗╔═╗╔╗╔╔╦╗╔═╗╦╔╗╔╔═╗╦═╗
+║║║╠═╣║║║║  ║  ║ ║║║║ ║ ╠═╣║║║║║╣ ╠╦╝
+╩ ╩╩ ╩╩╝╚╝  ╚═╝╚═╝╝╚╝ ╩ ╩ ╩╩╝╚╝╚═╝╩╚═
+-}}
+<div class="main-container">
+
+
+  {{!-
+ ╔╦╗╔═╗╔═╗  ╔═╗╔═╗╔╗╔╔╦╗╔═╗╦╔╗╔╔═╗╦═╗
+  ║ ║ ║╠═╝  ║  ║ ║║║║ ║ ╠═╣║║║║║╣ ╠╦╝
+  ╩ ╚═╝╩    ╚═╝╚═╝╝╚╝ ╩ ╩ ╩╩╝╚╝╚═╝╩╚═
+  -}}
+
+  <div class="top-container">
+
+    <div class="top-container-box" id="picture-profile">
+
+      <div class="top-container-box-sub">
+      <img src="{{userInSession.avatar}}" alt="userAvatar"/>
+      </div>
+
+      <div class="top-container-box-sub">
+      <p class="user">{{userInSession.firstname}} {{userInSession.lastname}}</p>
+      <a href="/mygifts/add">Add a gift</a>
+      </div>
+
+    </div>
+
+    <div class="top-container-box">
+    </div>
+
+  </div>
+
+
+  {{!-
+  ╔╦╗╦╔╦╗╔╦╗╦  ╔═╗  ╔═╗╔═╗╔╗╔╔╦╗╔═╗╦╔╗╔╔═╗╦═╗
+  ║║║║ ║║ ║║║  ║╣   ║  ║ ║║║║ ║ ╠═╣║║║║║╣ ╠╦╝
+  ╩ ╩╩═╩╝═╩╝╩═╝╚═╝  ╚═╝╚═╝╝╚╝ ╩ ╩ ╩╩╝╚╝╚═╝╩╚═
+  -}}
+
+  <div class="middle-container">
+
+    <h3>My barters</h3>
+    <div class="middle-container-box">
+      
+      <p>Received offer(s) pending for your answer : {{transactionswaitingforanswer.length}}</p>
+      <p>My offer(s) status: {{transactionsanswered.length}}</p>
+      <div>
+      <p><a href="/transactionsstatus">Check all barters status</a></p>
+      </div>
+    </div>
+  </div>
+
+  {{!-
+  ╔╗ ╔═╗╔╦╗╔╦╗╔═╗╔╦╗  ╔═╗╔═╗╔╗╔╔╦╗╔═╗╦╔╗╔╔═╗╦═╗
+  ╠╩╗║ ║ ║  ║ ║ ║║║║  ║  ║ ║║║║ ║ ╠═╣║║║║║╣ ╠╦╝
+  ╚═╝╚═╝ ╩  ╩ ╚═╝╩ ╩  ╚═╝╚═╝╝╚╝ ╩ ╩ ╩╩╝╚╝╚═╝╩╚═
+  -}}
+  
+  <div class="bottom-container">
     
     <div>
-        <h3>My gifts list</h3>
-        {{#each giftFromDb}}
-          <img src="{{this.picture}}" alt="giftImg"/>
-          <a href="/mygifts/{{id}}">{{name}}</a>
-          <p>Available : {{this.available}}</p>
-          
-          {{#if available}}
-            <a href="/mygifts/{{id}}/edit">Update</a>
-            <form action="/mygifts/{{id}}/delete" method="POST">
-              <button>Delete</button>
-            </form>
-          {{/if}}
+    <h3>My gifts list</h3>
+    <div>
+
+    <ul class="bottom-container">
+      {{#each giftFromDb}}
+
+      <li class="bottom-container">
+
+        <div class="bottom-box-mygift">
+
+          <div class="bottom-box-mygift-photo">
+            <img src="{{this.picture}}" alt="giftImg"/>        
+          </div>
+
+          <div class="bottom-box-mygift-content">
+            <a class="title" href="/mygifts/{{id}}">{{name}}</a>
+            <p>Available : {{this.available}}</p>
+            <div class="mygift-actions">
+              {{#if available}}
+              <a class="mygift-actions" href="/mygifts/{{id}}/edit">Update</a>
+              <form action="/mygifts/{{id}}/delete" method="POST">
+              <button class="mygift-actions">Delete</button>
+              </form>
+              {{/if}}
+            </div>
+            
+          </div>
         {{/each}}
-    </div>
+        </div>
+
+     </li>
+    </ul>
+  </div>
+
+
+</div>
+
 
   {{#if messages.error}}
     <h2>{{messages.error}}</h2>

@@ -74,6 +74,17 @@ nav>h1 {
     display: inline-block;
 }
 
+h2 {
+    font-size: 180%;
+    color: rgb(179, 5, 34);
+}
+
+h3 {
+    font-size: 180%;
+    color: rgb(179, 5, 34);
+    margin: 0 0 5px 0;
+}
+
 
 /*
 .logo img {
