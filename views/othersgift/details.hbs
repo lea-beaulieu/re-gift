@@ -3,48 +3,48 @@
 {{#if userInSession}}
  
  <div class="displaygiftdetail-container">
-  <div class="displaygiftdetail-box">
+    <div class="displaygiftdetail-box">
 
-    <div class="displaygift-box-fullimage">
-      <img class="fullimg" src="{{giftDetails.picture}}" alt="photo">
-    </div>
-
-
-    <div class="displaygiftdetail-box-content">
-
-      <div class="displaygift-box-title">
-      <p>{{giftDetails.name}}</p>
-      <p class="displaygift-box-brand"> {{giftDetails.brand}} </p>
+      <div class="displaygift-box-fullimage">
+       <img class="fullimg" src="{{giftDetails.picture}}" alt="photo">
       </div>
 
-      <p class="displaygift-box-description">{{giftDetails.description}}</p>
-      <p class="displaygift-box-userA">Proposed by {{giftDetails.user.username}} ({{giftDetails.user.city}} {{giftDetails.user.zip}}) </p>
 
-      <div class="displaygift-box-trading">
-        <form action="/gifts/{{giftDetails.id}}" method="POST">
-          <label>
-          My gifts 
+      <div class="displaygiftdetail-box-content">
 
-          <div class="displaygift-box-mygifts">
-            <select name="mygifts" multiple>
-            {{#each giftsFromDb}}
-            <option value={{this.id}}>{{this.name}}</option>
-            {{/each}}
-            </select>
-          </div>
+        <div class="displaygift-box-title">
+          <p>{{giftDetails.name}}</p>
+          <p class="displaygift-box-brand"> {{giftDetails.brand}} </p>
+        </div>
 
-          </label>
+        <p class="displaygift-box-description">{{giftDetails.description}}</p>
+        <p class="displaygift-box-userA">Proposed by {{giftDetails.user.username}} ({{giftDetails.user.city}} {{giftDetails.user.zip}}) </p>
 
-          <button>Send my offer</button>
-        </form>
+        <div class="displaygift-box-trading">
+          <form action="/gifts/{{giftDetails.id}}" method="POST">
+           <label>
+            My gifts 
+
+           <div class="displaygift-box-mygifts">
+             <select name="mygifts" multiple>
+             {{#each giftsFromDb}}
+             <option value={{this.id}}>{{this.name}}</option>
+             {{/each}}
+             </select>
+            </div>
+
+           </label>
+
+            <button>Send my offer</button>
+          </form>
 
           <div class="message-error">
-          {{#if messages.error}}
-          <p>{{messages.error}}</p>
-          {{/if}}
+            {{#if messages.error}}
+              <p>{{messages.error}}</p>
+            {{/if}}
+          </div>
+        </div>
       </div>
-    </div>
-
   </div>
 </div>
 
@@ -54,6 +54,5 @@
 
 {{else}}
   <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
-
 {{/if}}
 </div>

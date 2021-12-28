@@ -21,10 +21,10 @@ router.get('/profile', (req, res, next) => {
         for (let i =0; i<giftFromDb.length; i++) {
           mygiftsIds.push(giftFromDb[i].id);
         }
-        // letting user knows the number of barters waiting for a response
+        // letting user knows the number of trades waiting for a response
         Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $eq: 'initiate'}})
           .then(transactionswaitingforanswer => {
-            // letting user knows the number of responses to the barters he has proposed
+            // letting user knows the number of responses to the trades he has proposed
             Transaction.find({giftB:{ $in: mygiftsIds}, status:{ $ne: 'initiate'}})
               .then(transactionsanswered => {
                 console.log('transactions answered : ', transactionsanswered);
