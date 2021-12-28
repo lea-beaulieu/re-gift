@@ -1,16 +1,35 @@
+<link rel="stylesheet" href="/stylesheets/style-displaygift.css" />
+
 {{#if userInSession}}
-<h2>"{{giftDetails.name}}" details</h2>
 
-<img src="{{giftDetails.picture}}" alt="photo">
+<div class="displaygiftdetail-container">
+  <div class="displaygiftdetail-box">
 
-<p>Category: {{giftDetails.category}}</p>
+    <div class="displaygift-box-fullimage">
+    <img class="fullimg" src="{{giftDetails.picture}}" alt="photo">
+    </div>
 
-<p>Brand: {{giftDetails.brand}}</p>
+    <div class="displaygiftdetail-box-content">
 
-<p>Description : {{giftDetails.description}}</p>
+       <div class="displaygift-box-title">
+        <p>{{giftDetails.name}} details<p>
+        <p class="displaygift-box-brand">Brand: {{giftDetails.brand}}</p>
+        <p class="displaygift-box-brand">Category: {{giftDetails.category}}</p>
+      </div>
 
+      <p class="displaygift-box-description">Description : {{giftDetails.description}}</p>
+
+    </div>
+  
+  
+  
+  </div>
+</div>
+
+<div class="footer-previouspage">
 <a href="/profile">Return to my profile</a>
 
 {{else}}
-  <p>Log in</p>
+  <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
 {{/if}}
+</div>

@@ -1,50 +1,61 @@
 {{#if userInSession}}
-<h1>Add a new gift</h1>
+<div class="container-signup-form">
 
-<form action="/mygifts/add" method="POST" enctype="multipart/form-data">
-  <label>
-      Name
-      <input type="text" name="name">
-  </label>
+  <div class="box-signup-form">
 
-  <label>
-      Category
-      <select multiple name="category">
-        <option value="books">Books</option>
-        <option value="boxes">Boxes</option>
-        <option value="fragrances">Fragrances</option>
-        <option value="toys">Toys</option>  
-      </select>
-  </label>
+    <h2>Add a new gift</h2>
 
-  <label>
-      Brand
-      <input type="text" name="brand">
-  </label>
+    <form action="/mygifts/add" method="POST" enctype="multipart/form-data">
 
-  <label>
-      Description
-      <textarea name="description">
-      </textarea>
-  </label>
+      <label>
+        <div class="signup-tag">Gift name</div>
+        <input class="signup-input" type="text" name="name">
+      </label>
 
-  <label>
-      Picture
-      <input type="file" name="picture"/>
-  </label>
+      <label>
+        <div class="signup-tag">Category</div>
+          <select multiple name="category">
+            <option value="books">Books</option>
+            <option value="boxes">Boxes</option>
+            <option value="fragrances">Fragrances</option>
+            <option value="toys">Toys</option>  
+          </select>
+      </label>
 
-   <button>Add</button>
-  
-  {{#if errorMessage}}
-   <h2>{{errorMessage}}</h2>
-  {{/if}}
+      <label>
+        <div class="signup-tag">Brand</div>
+        <input class="signup-input" type="text" name="brand">
+      </label>
 
-</form>
+      <label>
+        <div class="signup-tag">Description</div>
+        <textarea name="description">
+        </textarea>
+      </label>
 
+      <label>
+        <div class="signup-tag">Picture</div>
+        <input class="signup-input" type="file" name="picture"/>
+      </label>
+
+      <div>
+      <button>Post it !</button>
+      </div>
+
+    </form>
+
+    {{#if errorMessage}}
+    <h3>{{errorMessage}}</h3>
+    {{/if}}
+
+  </div>
+</div>
+
+<div class="footer-previouspage">
 <a href="/profile">Return to my profile</a>
 
-
-
 {{else}}
-  <p>Log in</p>
+  <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
+{{/if}} 
 {{/if}}
+</div> 

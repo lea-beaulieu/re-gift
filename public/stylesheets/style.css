@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/*
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300);
+*/
+
 body {
+  margin: 0;
   justify-content: center;
   align-items: center;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -14,13 +21,14 @@ a {
 
 h1 {
   color: 15px;
+  text-transform: capitalize;
 }
 
 main {
   padding-top: 6%;
 }
 
-#gifts img {
+#category-boxs img {
   width: 50px;
 }
 
@@ -44,10 +52,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  height: 15%;
-  width: 100%;
+  padding: 1em;
+  width: 100vw;
+  max-height: 78px;
   background: rgb(179, 5, 34);
+  /*#ff4444*/
   box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.3);
+  z-index: 999;
 }
 
 nav>h1 {
@@ -61,6 +72,17 @@ nav>h1 {
 
 .logo {
   display: inline-block;
+}
+
+h2 {
+  font-size: 180%;
+  color: rgb(179, 5, 34);
+}
+
+h3 {
+  font-size: 180%;
+  color: rgb(179, 5, 34);
+  margin: 0 0 5px 0;
 }
 
 
@@ -83,6 +105,15 @@ nav>h1 {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 200ms linear;
+}
+
+.menu-item p {
+  display: block;
+  font-weight: 100;
+  font-size: 100%;
+  color: #d6d6d6;
+  margin-right: 30px;
+  font-style: italic;
 }
 
 
@@ -113,10 +144,11 @@ nav>h1 {
 */
 
 footer {
+  position: absolute;
   background: rgb(179, 5, 34);
   text-align: center;
   color: white;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,10 +156,10 @@ footer {
   font-size: 100%;
 }
 
-.container-auth {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+.message-error {
+  text-align: center;
+  font-weight: normal;
+  margin-top: 20px;
 }
 
 
@@ -141,12 +173,19 @@ footer {
 ######  ####### #     #     #####  ###  #####  #     #     #####  #  
 */
 
+.container-auth {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 60px;
+  margin: 90px;
+}
+
 .box-auth {
   text-align: center;
-  padding: 5%;
+  padding: 3em;
   background: white;
-  max-width: 30em;
-  margin: 6% 2%;
+  flex: 1;
   box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
   background: url("/images/giftbg.jpeg");
   background-size: 50%;
@@ -202,11 +241,263 @@ footer {
   background: none;
 }
 
-input {
-  background-color: white;
-  opacity: 0.5;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 80%;
+
+/*
+label {
+  font-weight: 700;
+
 }
+*/
+
+input {
+  color: rgb(0,0,0);
+  background-color: lightgray;
+  opacity: 0.5;
+  border-style: solid;
+  border-color: rgb(185, 185, 185);
+  border-width: 0.5px;
+  outline: none;
+  padding: 12px 15px;
+  margin: 8px;
+  width: 60%;
+  border-radius: 18px;
+}
+
+
+/*
+ ######  ####  ######   ##    ##    ##     ## ########     ########  #######  ########  ##     ## 
+##    ##  ##  ##    ##  ###   ##    ##     ## ##     ##    ##       ##     ## ##     ## ###   ### 
+##        ##  ##        ####  ##    ##     ## ##     ##    ##       ##     ## ##     ## #### #### 
+ ######   ##  ##   #### ## ## ##    ##     ## ########     ######   ##     ## ########  ## ### ## 
+      ##  ##  ##    ##  ##  ####    ##     ## ##           ##       ##     ## ##   ##   ##     ## 
+##    ##  ##  ##    ##  ##   ###    ##     ## ##           ##       ##     ## ##    ##  ##     ## 
+ ######  ####  ######   ##    ##     #######  ##           ##        #######  ##     ## ##     ##
+*/
+
+.container-signup-form {
+  display: flex;
+  justify-content: center;
+  margin: 3vw 30vw 0vw 30vw;
+}
+
+.box-signup-form {
+  width: 280px;
+  padding: 2em;
+  background: white;
+  box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+  background: url("/images/giftbg.jpeg");
+  background-size: 50%;
+  background-position: center;
+  /*box-sizing: border-box;*/
+}
+
+.box-signup-form h2 {
+  font-size: 150%;
+  color: rgb(179, 5, 34);
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.signup-tag {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 0;
+}
+
+.box-signup-form button {
+  text-align: center;
+  min-width: 100%;
+  padding: 10px 50px;
+  margin: 5px 0 0 0;
+  box-sizing: border-box;
+  font-size: 140%;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background: rgb(179, 5, 34);
+  transition: linear 0.3s;
+  white-space: pre-line;
+}
+
+.box-signup-form button:hover {
+  color: rgba(179, 5, 34, 0.8);
+  border: 2px solid rgba(179, 5, 34, 0.8);
+  background: none;
+  cursor: pointer;
+}
+
+.signup-input {
+  align-self: center;
+  color: rgb(0, 0, 0);
+  background-color: lightgray;
+  opacity: 0.5;
+  border-style: solid;
+  border-color: rgb(185, 185, 185);
+  border-width: 0.5px;
+  outline: none;
+  padding: 4px 8px;
+  margin: 0px 0px 5px 0px;
+  width: 250px;
+  border-radius: 18px;
+}
+
+
+/*
+#####     #    ####### #######  #####  ####### ######  #     # 
+#     #   # #      #    #       #     # #     # #     #  #   #  
+#        #   #     #    #       #       #     # #     #   # #   
+#       #     #    #    #####   #  #### #     # ######     #    
+#       #######    #    #       #     # #     # #   #      #    
+#     # #     #    #    #       #     # #     # #    #     #    
+#####  #     #    #    #######  #####  ####### #     #    #    
+*/
+
+h1 {
+  font-size: 170%;
+  color: rgb(179, 5, 34);
+  text-align: center;
+  margin: 30px 0 0 0;
+  max-width: 100vw;
+}
+
+.footer-previouspage {
+  font-size: inherit;
+  color: rgb(179, 5, 34);
+  width: 100vw;
+  text-align: right;
+  margin: 20px 20px 0 0;
+}
+
+.footer-previouspage a {
+  margin: 0px 20px 0 0;
+}
+
+.category-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 20vw 0 20vw;
+}
+
+.category-box {
+  width: 290px;
+  max-width: 290px;
+  height: 227px;
+  position: relative;
+  margin: 20px 0vw 0 2vw;
+}
+
+.category-box .category-photo img {
+  width: 100%;
+  height: 227px;
+  position: absolute;
+}
+
+.category-box:hover .category-hover {
+  opacity: 0.8;
+  transform: translate(-10px, -10px);
+}
+
+.category-box .category-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("/images/giftbg.jpeg");
+  background-size: 100%;
+  background-position: center;
+  text-transform: uppercase;
+  transform: translate(0, 0);
+  opacity: 0;
+  transition: .25s ease-out;
+}
+
+.category-box .category-detail {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.category-box .category-hover a {
+  text-decoration: none;
+  color: rgba(179, 5, 34, 0.918);
+  border: 2px solid rgba(179, 5, 34, 0.918);
+  background: none;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 98;
+} 
+
+
+/*
+
+   ###    ########  ########        ## ######## ########  #### ########     ######   #### ######## ######## 
+  ## ##   ##     ## ##     ##      ##  ##       ##     ##  ##     ##       ##    ##   ##  ##          ##    
+ ##   ##  ##     ## ##     ##     ##   ##       ##     ##  ##     ##       ##         ##  ##          ##    
+##     ## ##     ## ##     ##    ##    ######   ##     ##  ##     ##       ##   ####  ##  ######      ##    
+######### ##     ## ##     ##   ##     ##       ##     ##  ##     ##       ##    ##   ##  ##          ##    
+##     ## ##     ## ##     ##  ##      ##       ##     ##  ##     ##       ##    ##   ##  ##          ##    
+##     ## ########  ########  ##       ######## ########  ####    ##        ######   #### ##          ##
+
+*/
+
+
+/* ADD AND EDIT GIFT CSS IS BASED ON SIGNUP FORM CSS, FEW EXCEPTION SUCH AS BUTTON APPLIES */
+
+
+/*
+.button-addgift button {
+  width: 100%;
+  min-width: 100%;
+  padding-left: 100px;
+  margin-top: 10px;
+}
+*/
+
+textarea {
+  align-self: center;
+  color: rgb(0, 0, 0);
+  background-color: lightgray;
+  opacity: 0.5;
+  border-style: solid;
+  border-color: rgb(185, 185, 185);
+  border-width: 0.5px;
+  outline: none;
+  padding: 4px 8px;
+  margin: 0px 0px 5px 0px;
+  width: 250px;
+  min-height: 60px;
+  border-radius: 18px;
+}
+
+select {
+  align-self: center;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+  border-style: solid;
+  border-color: rgb(185, 185, 185);
+  border-width: 0.5px;
+  outline: none;
+  padding: 4px 8px;
+  margin: 0px 0px 5px 0px;
+  width: 270px;
+  border-radius: 18px;
+  text-transform: capitalize;
+} 
+
+
+/*
+  ####   ####  #    # #####   ##    ####  ##### 
+ #    # #    # ##   #   #    #  #  #    #   #   
+ #      #    # # #  #   #   #    # #        #   
+ #      #    # #  # #   #   ###### #        #   
+ #    # #    # #   ##   #   #    # #    #   #   
+  ####   ####  #    #   #   #    #  ####    # 
+  */
+
+  .contact {
+    text-align: center;
+} 

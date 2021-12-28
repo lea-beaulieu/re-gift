@@ -1,11 +1,41 @@
-<h1>The {{category}} </h1>
+<link rel="stylesheet" href="/stylesheets/style-displaygift.css" />
+<h1>{{category}} </h1>
 
-<h2>Number of {{category}} : {{giftsOfSelectedCategory.length}}</h2>
+<div class="displaygift-count">
+{{giftsOfSelectedCategory.length}} gift(s) available
+</div>
 
-{{#each giftsOfSelectedCategory}}
-  <img src="{{this.picture}}" alt="giftImg"/>
-  <a href="/gifts/{{id}}"><p>Name : {{this.name}}</p></a>
-{{/each}}
+<ul class="displaygift-container">
+  {{#each giftsOfSelectedCategory}}
+
+  <li class="displaygift-container__box">
+
+    <div class="displaygift-box">
 
 
+
+      <div class="displaygift-box-image">
+      <img src="{{this.picture}}" alt="giftImg"/>
+      </div>
+
+      <div class="displaygift-box-content">
+        <div class="displaygift-box-title">
+          <p class="displaygift-box-title">{{this.name}}</p>
+          <p class="displaygift-box-brand">{{this.brand}}</p>
+        </div> 
+        <p class="displaygift-box-text"></p>
+        <button class="displaygift-box-btn displaygift-box-btn--block"><a href="/gifts/{{id}}"><p>GO</p></a></button>
+
+      </div>
+
+    </div>
+
+  </li>
+  
+  {{/each}}
+
+</ul>
+
+<div class="footer-previouspage">
 <a href="/gifts">Return to all categories</a>
+</div> 

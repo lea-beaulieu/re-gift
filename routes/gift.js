@@ -78,7 +78,7 @@ router.get('/mygifts/:id', (req, res, next) => {
 router.get('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next) => {
   Gift.findById(req.params.id)
     .then(giftToEdit => {
-      const category = [{name:'books'}, {name:'boxs'} , {name:'fragrances'}, {name:'toys'} ];
+      const category = [{name:'books'}, {name:'boxes'} , {name:'fragrances'}, {name:'toys'} ];
       category.forEach(categ => {
         console.log('giftToEdit.category: ', giftToEdit.category)
         console.log('categ: ', categ)

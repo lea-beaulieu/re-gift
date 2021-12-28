@@ -1,0 +1,348 @@
+/*
+                                             
+ #####  #####   ####  ###### # #      ###### 
+ #    # #    # #    # #      # #      #      
+ #    # #    # #    # #####  # #      #####  
+ #####  #####  #    # #      # #      #      
+ #      #   #  #    # #      # #      #      
+ #      #    #  ####  #      # ###### ###### 
+ */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    align-content: space-between;
+    padding: 2vw 15vw;
+    gap: 5px;
+}
+
+.top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    /*background-color: #ffe600;*/
+}
+
+.top-container-box {
+    margin-top: 20px;
+    /*background-color: gray;*/
+    stroke: black;
+    align-items: center;
+    display: flex;
+    flex: 1;
+}
+
+.top-container-box-sub {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    align-content: space-between;
+    width: 100%;
+    flex: 1;
+    margin: 0 10px 0 0;
+}
+
+.top-container-box a {
+    background-color: rgb(179, 5, 34);
+    color: white;
+    padding: 8px;
+    letter-spacing: 2px;
+    border: 2px solid transparent;
+    border-radius: 2px;
+}
+
+.top-container-box p {
+    min-width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#picture-profile img {
+    width: 250px;
+    vertical-align: middle;
+    object-fit: cover;
+    object-position: 100% 0;
+}
+
+.middle-container {
+    padding: 40px 20px 0 20px;
+    max-width: 89%;
+    flex-direction: row;
+}
+
+.middle-container-box {
+    background-color: rgb(228, 228, 228);
+    box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+    padding: 15px 20px;
+}
+
+.middle-container-box a {
+    background-color: rgb(179, 5, 34);
+    color: white;
+    padding: 8px;
+    letter-spacing: 2px;
+    border: 2px solid transparent;
+    border-radius: 2px;
+}
+
+.middle-container-box p {
+    margin-block-start: 0;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: row;
+    /*background-color: white;*/
+    padding: 40px 20px;
+}
+
+.bottom-container ul {
+    display: flex;
+    background-color: rgb(228, 228, 228);
+    box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    color: #999999;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.bottom-container li {
+    display: flex;
+    padding: 1rem;
+}
+
+.bottom-box-mygift {
+    background-color: white;
+    border: 1px solid #bfbfbf;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 155px;
+    max-width: 155px;
+}
+
+.bottom-box-mygift-photo {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+
+.bottom-box-mygift-photo img {
+    width: 100%;
+    height: 80px;
+    vertical-align: middle;
+    object-fit: cover;
+    object-position: 100% 0;
+}
+
+.bottom-box-mygift-content {
+    /*display: flex;*/
+    /*flex: 1 1 auto;*/
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.bottom-box-mygift-content .title {
+    color: #696969;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.bottom-box-mygift-content p {
+    text-transform: uppercase;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 8px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+
+/* edit and delete buttons */
+
+.mygift-actions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: center;
+    gap: 4px;
+    height: 25px;
+}
+
+
+/*
+.mygift-actions a {
+    background-color: rgb(179, 5, 34);
+    color: white;
+    padding: 4px;
+    font-size: 12px;
+}
+*/
+
+.mygift-actions a,
+button {
+    padding: 4px;
+    box-sizing: border-box;
+    letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 2px;
+    background: rgb(179, 5, 34);
+    font-size: 10px;
+}
+
+.user {
+    font-size: 200%;
+    text-transform: capitalize;
+    font-weight: 500;
+    color: rgb(59, 59, 59);
+}
+
+button:hover {
+    color: rgba(179, 5, 34, 0.8);
+    border: 1px solid rgba(179, 5, 34, 0.8);
+    background: none;
+    cursor: pointer;
+}
+
+.top-container-box a:hover,
+.middle-container-box a:hover,
+.mygift-actions a:hover {
+    color: rgba(179, 5, 34, 0.8);
+    border: 1px solid rgba(179, 5, 34, 0.8);
+    background: none;
+    cursor: pointer;
+} 
+
+
+/*                                                                
+ ##### #####    ##   #    #  ####    ##   ##### #  ####  #    #  ####  
+   #   #    #  #  #  ##   # #       #  #    #   # #    # ##   # #      
+   #   #    # #    # # #  #  ####  #    #   #   # #    # # #  #  ####  
+   #   #####  ###### #  # #      # ######   #   # #    # #  # #      # 
+   #   #   #  #    # #   ## #    # #    #   #   # #    # #   ## #    # 
+   #   #    # #    # #    #  ####  #    #   #   #  ####  #    #  ####
+*/
+
+.container-status {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    align-content: space-between;
+    padding: 0 15vw;
+    gap: 5px;
+}
+
+.box-status {
+    padding: 40px 20px 0 20px;
+    max-width: 89%;
+    flex-direction: row;
+}
+
+.box-status-content {
+    background-color: rgb(228, 228, 228);
+    box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+    padding: 15px 20px;
+}
+
+.box-status-content a:hover {
+    color: rgba(179, 5, 34, 0.8);
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+}
+
+.status h1 {
+    text-transform: uppercase;
+}
+
+.box-status-content h3 {
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #696969;
+}
+
+.box-status-content p {
+    margin: 0;
+    border-left: 4px solid rgba(179, 5, 34, 0.8);
+    padding-left: 5px;
+}
+
+.transaction-id {
+    font-size: 12px;
+    padding-bottom: 8px;
+    font-weight: 300;
+    text-align: justify;
+    color: #696969;
+}
+
+.transaction-status {
+    text-align: justify;
+    color: #696969;
+}
+
+.offer-item {
+    font-weight: 600;
+}
+
+mark {
+    color: white;
+    font-weight: 400;
+    background: radial-gradient( #ff4444, #FF8E64);
+    padding: 2px;
+} 
+
+.box-transaction-edit {
+    width: 280px;
+    padding: 2em;
+    background: white;
+    box-shadow: 1em 1em 0 0 rgba(0, 0, 0, .2);
+    background: url("/images/giftbg.jpeg");
+    background-size: 50%;
+    background-position: center;
+    /*box-sizing: border-box;*/
+}
+
+.box-transaction-edit button {
+    text-align: center;
+    min-width: 100%;
+    padding: 10px 50px;
+    margin: 5px 0 0 0;
+    box-sizing: border-box;
+    font-size: 140%;
+    letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 2px;
+    background: rgb(179, 5, 34);
+    transition: linear 0.3s;
+    white-space: pre-line;
+}
+
+.box-transaction-edit button:hover {
+    color: rgba(179, 5, 34, 0.8);
+    border: 2px solid rgba(179, 5, 34, 0.8);
+    background: none;
+    cursor: pointer;
+} 

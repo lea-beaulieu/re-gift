@@ -1,43 +1,54 @@
 {{#if userInSession}}
-<h1>Edit : "{{giftToEdit.name}}" </h1>
 
-<form action="/mygifts/{{giftToEdit.id}}/edit" method="POST" enctype="multipart/form-data">
+<div class="container-signup-form">
+  <div class="box-signup-form">
 
-  <label>
-      Name
-      <input type="text" name="name" value="{{giftToEdit.name}}">
-  </label>
+    <h2>Edit {{giftToEdit.name}} </h2>
 
-  <label>
-      Category
-      <select multiple name="category">
-        {{#each category}}
-        <option value="{{name}}" {{#if selected}}selected="selected"{{/if}}>{{name}}</option>
-        {{/each}}  
-      </select>
-  </label>
+    <form action="/mygifts/{{giftToEdit.id}}/edit" method="POST" enctype="multipart/form-data">
 
-  <label>
-      Brand
-      <input type="text" name="brand" value="{{giftToEdit.brand}}">
-  </label>
+      <label>
+        <div class="signup-tag">Gift name</div>
+        <input class="signup-input" type="text" name="name" value="{{giftToEdit.name}}">
+      </label>
 
-  <label>
-      Description
-      <textarea name="description"> {{giftToEdit.description}}
-      </textarea>
-  </label>
+      <label>
+          <div class="signup-tag">Category</div>
+          <select multiple name="category">
+            {{#each category}}
+            <option value="{{name}}" {{#if selected}}selected="selected"{{/if}}>{{name}}</option>
+            {{/each}}  
+          </select>
+      </label>
 
-  <label>
-        Picture
-        <input type="file" name="picture" value="{{giftToEdit.picture}}"/>
-    </label>
+      <label>
+          <div class="signup-tag">Brand</div>
+          <input class="signup-input" type="text" name="brand" value="{{giftToEdit.brand}}">
+      </label>
 
-   <button>Edit</button>
-  
-</form>
+      <label>
+          <div class="signup-tag">Description</div>
+          <textarea name="description"> {{giftToEdit.description}}
+          </textarea>
+      </label>
 
-<a href="/profile">Return to my profile</a>
-{{else}}
-  <p>Log in</p>
-{{/if}}
+      <label>
+            <div class="signup-tag">Picture</div>
+            <input class="signup-input" type="file" name="picture" value="{{giftToEdit.picture}}"/>
+        </label>
+
+      <div>
+      <button>Update now !</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<div class="footer-previouspage">
+  <a href="/profile">Return to my profile</a>
+  {{else}}
+    <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
+  {{/if}}
+</div>

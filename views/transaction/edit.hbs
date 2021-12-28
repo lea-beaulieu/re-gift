@@ -1,5 +1,11 @@
 {{#if userInSession}}
-<h1>Edit the transation status with {{giftproposed.user.username}}</h1>
+
+
+
+<div class="container-signup-form">
+  <div class="box-transaction-edit">
+
+<h2>Edit the transation status with {{giftproposed.user.username}}</h1>
 
 <form action="/transaction/{{transactionsIamaskedfor.id}}" method="POST">
 
@@ -14,9 +20,12 @@
   
    <button>Edit</button>
   
+
 </form>
+</div>
+</div>
 
 <a href="/profile">Return to my profile</a>
 {{else}}
-  <p>Log in</p>
+  <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
 {{/if}}
