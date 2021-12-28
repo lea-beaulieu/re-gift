@@ -307,7 +307,6 @@ input {
 .box-signup-form button {
     text-align: center;
     min-width: 100%;
-    /*flex-flow: column;*/
     padding: 10px 50px;
     margin: 5px 0 0 0;
     box-sizing: border-box;
@@ -448,21 +447,15 @@ h1 {
 
 /* ADD AND EDIT GIFT CSS IS BASED ON SIGNUP FORM CSS, FEW EXCEPTION SUCH AS BUTTON APPLIES */
 
+
+/*
 .button-addgift button {
-    /*100% of my box - padding*/
     width: 100%;
     min-width: 100%;
     padding-left: 100px;
     margin-top: 10px;
 }
-
-.button-editgift button {
-    /*100% of my box - padding*/
-    width: 100%;
-    min-width: 100%;
-    padding-left: 70px;
-    margin-top: 10px;
-}
+*/
 
 textarea {
     align-self: center;
