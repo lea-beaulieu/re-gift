@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/style-myprofile.css" />
 {{#if userInSession}} 
-<<<<<<< HEAD
 <div id="congrats">
 <h1>Congrats for your trade with {{giftproposed.user.username}} <br> <img id="successphoto" src="{{giftproposed.user.avatar}}" alt="useravatar"/></h1>
 
@@ -15,15 +14,4 @@
 <div class="login">
 <a href="/login">Please log-in or sign-up to start trading with our community !</a>
 </div>
-=======
-<h1>Congrats for your trade with {{giftproposed.user.username}}</h1>
-
-<p class="contact">You can contact {{giftproposed.user.username}} at <strong>{{giftproposed.user.email}}</strong> to discuss the details.</p>
-
-<div class="footer-previouspage">
-<a href="/transactionsstatus">Return to the transactions page</a>
-</div>
-{{else}}
-    <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
->>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
 {{/if}} 
