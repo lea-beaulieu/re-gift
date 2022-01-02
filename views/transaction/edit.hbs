@@ -5,7 +5,7 @@
 <div class="container-signup-form">
   <div class="box-transaction-edit">
 
-<h2>Edit the transation status with {{giftproposed.user.username}}</h1>
+<h2>Edit the trade status with {{giftproposed.user.username}}</h1>
 
 <form action="/transaction/{{transactionsIamaskedfor.id}}" method="POST">
 
@@ -25,7 +25,8 @@
   </div>
 </div>
 
-<a href="/profile">Return to my profile</a>
 {{else}}
-<a href="/login">Please log-in or sign-up to start tarding with our community !</a>
+<div class="login">
+<a href="/login">Please log-in or sign-up to start trading with our community !</a>
+</div>
 {{/if}}

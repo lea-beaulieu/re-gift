@@ -15,7 +15,7 @@
 
       <label>
         <div class="signup-tag">Category</div>
-          <select multiple name="category">
+          <select id="newselect" multiple name="category">
             <option value="books">Books</option>
             <option value="boxes">Boxes</option>
             <option value="fragrances">Fragrances</option>
@@ -52,10 +52,9 @@
   </div>
 </div>
 
-<div class="footer-previouspage">
-<a href="/profile">Return to my profile</a>
 
 {{else}}
-<a href="/login">Please log-in or sign-up to start tarding with our community !</a>
-{{/if}}
+<div class="login">
+<a href="/login">Please log-in or sign-up to start trading with our community !</a>
 </div>
+{{/if}}

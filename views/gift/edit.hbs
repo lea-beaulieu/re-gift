@@ -14,7 +14,7 @@
 
       <label>
           <div class="signup-tag">Category</div>
-          <select multiple name="category">
+          <select id="editselect" multiple name="category">
             {{#each category}}
             <option value="{{name}}" {{#if selected}}selected="selected"{{/if}}>{{name}}</option>
             {{/each}}  
@@ -46,9 +46,9 @@
   </div>
 </div>
 
-<div class="footer-previouspage">
-  <a href="/profile">Return to my profile</a>
+
   {{else}}
-    <a href="/login">Please log-in or sign-up to start tarding with our community !</a>
+  <div class="login">
+    <a href="/login">Please log-in or sign-up to start trading with our community !</a>
+  </div>
   {{/if}}
-</div>

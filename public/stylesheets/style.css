@@ -8,7 +8,7 @@ body {
     margin: 0;
     justify-content: center;
     align-items: center;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     background: rgb(243, 243, 243);
     position: relative;
     font-family: 'Poppins', sans-serif;
@@ -108,11 +108,12 @@ h3 {
 }
 
 .menu-item p {
-    display: block;
+    display: inline-block;
     font-weight: 100;
     font-size: 100%;
     color: #d6d6d6;
-    margin-right: 30px;
+    margin-right: 60px;
+    margin-left: 30px;
     font-style: italic;
 }
 
@@ -144,7 +145,8 @@ h3 {
  */
 
 footer {
-    position: absolute;
+    position: fixed;
+    bottom: 0;
     background: rgb(179, 5, 34);
     text-align: center;
     color: white;
@@ -160,6 +162,15 @@ footer {
     text-align: center;
     font-weight: normal;
     margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.login {
+    padding: 20% 0;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 20px;
 }
 
 
@@ -300,7 +311,7 @@ input {
 
 .signup-tag {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 16px;
     margin: 0;
 }
 
@@ -395,9 +406,14 @@ h1 {
     position: absolute;
 }
 
-.category-box:hover .category-hover {
+.category-box:hover .left {
     opacity: 0.8;
     transform: translate(-10px, -10px);
+}
+
+.category-box:hover .right {
+    opacity: 0.8;
+    transform: translate(10px, -10px);
 }
 
 .category-box .category-hover {
@@ -473,10 +489,25 @@ textarea {
     border-radius: 18px;
 }
 
-select {
+#newselect {
     align-self: center;
     color: rgb(0, 0, 0);
     background-color: lightgray;
+    opacity: 0.5;
+    border-style: solid;
+    border-color: rgb(185, 185, 185);
+    border-width: 0.5px;
+    outline: none;
+    padding: 4px 8px;
+    margin: 0px 0px 5px 0px;
+    width: 270px;
+    border-radius: 18px;
+    text-transform: capitalize;
+}
+
+#editselect {
+    align-self: center;
+    color: rgb(0, 0, 0);
     opacity: 0.5;
     border-style: solid;
     border-color: rgb(185, 185, 185);

@@ -78,7 +78,7 @@ router.get('/mygifts/:id', (req, res, next) => {
 router.get('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next) => {
   Gift.findById(req.params.id)
     .then(giftToEdit => {
-      const category = [{name:'books'}, {name:'boxs'} , {name:'fragrances'}, {name:'toys'} ];
+      const category = [{name:'books'}, {name:'boxes'} , {name:'fragrances'}, {name:'toys'} ];
       category.forEach(categ => {
         console.log('giftToEdit.category: ', giftToEdit.category)
         console.log('categ: ', categ)
@@ -132,7 +132,7 @@ router.post('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next
 
 
 router.get('/gifts', (req, res) => {
-  res.render('othersgift/gifts', {})
+  res.render('othersgift/gifts', {userInSession: req.session.user})
 })
 
 
@@ -147,18 +147,31 @@ router.get('/gifts', (req, res) => {
 router.get('/gifts/category', (req, res, next) => {
   console.log('req.query: ', req.query);
   console.log('req.query.name: ', req.query.name);
-
-  Gift.find({ category: req.query.name, available: true})
+  if (req.session.user) {
+  Gift.find({ category: req.query.name, available: true, user:{ $ne: req.session.user}})
     .populate('user')
     .then(giftsOfSelectedCategory => {
         console.log('gift: ', giftsOfSelectedCategory)
-        res.render('othersgift/giftsbycategory', { category: req.query.name, giftsOfSelectedCategory })
+        res.render('othersgift/giftsbycategory', { category: req.query.name, giftsOfSelectedCategory, userInSession: req.session.user })
     })
     .catch(error => {
         console.log(`error while looking gifts by category: ${error}`);
         res.redirect('/gifts');
         next(error);
     })
+  } else {
+    Gift.find({ category: req.query.name, available: true})
+    .populate('user')
+    .then(giftsOfSelectedCategory => {
+        console.log('gift: ', giftsOfSelectedCategory)
+        res.render('othersgift/giftsbycategory', { category: req.query.name, giftsOfSelectedCategory})
+    })
+    .catch(error => {
+        console.log(`error while looking gifts by category: ${error}`);
+        res.redirect('/gifts');
+        next(error);
+    })
+  }
 })
 
 // ###        ######   #### ######## ########    ########  ######## ########    ###    #### ##        ######  
@@ -200,24 +213,44 @@ router.get('/gifts/:id', (req, res, next) => {
 
 // Only possible if gift is avaible and not in an initiated transaction
 router.post('/mygifts/:id/delete', (req, res, next) => {
-  const user = req.session.user;
   Transaction.find({giftB:req.params.id})
-    .then(gifts => {
+    .then(transac => {
+      console.log('transac: ', transac);
       Transaction.find({gitA:req.params.id})
-        .then(gifts => {
-          console.log('gifts: ', gifts);
-          if(gifts.length === 0 ){
-            Gift.findByIdAndRemove(req.params.id)
-              .then(deleteGift => {
+        .then(transactions => {
+          console.log('transactions: ', transactions);
+          giftsIds = [];
+        for (let i =0; i<transactions.length; i++) {
+          giftsIds.push(transactions[i].giftA, transactions[i].giftB);
+        }
+        console.log('giftsIds: ', giftsIds)
+        
+        Gift.findById(req.params.id)
+        if (giftsIds.includes(req.params.id)) {
+          req.flash("error", "You cannot delete this gift while it is in a transaction.");
+           res.redirect('/profile');
+        } else {
+          Gift.findByIdAndDelete(req.params.id)
+          .then(deleteGift => {
                 res.redirect('/profile')
-              })
-              .catch(error => {
+          })
+          .catch(error => {
                 console.log(error);
                 next(error);
               }) 
-          } else {
-           req.flash("error", "You cannot delete this gift while it is in a transaction.");
-           res.redirect('/profile');
+          // if(transactions.length === 0 ){
+            // for (let i=0; i< transactions.length; i++){
+            // Gift.findByIdAndRemove(req.params.id)
+            //   .then(deleteGift => {
+            //     res.redirect('/profile')
+            //   })
+            //   .catch(error => {
+            //     console.log(error);
+            //     next(error);
+            //   }) 
+          // } else {
+            // req.flash("error", "You cannot delete this gift while it is in a transaction.");
+            // res.redirect('/profile');
           }
         }).catch(error => next(error))       
     }).catch(error => next(error)) 

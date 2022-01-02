@@ -5,7 +5,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{title}}</title>
+      <title>Re/gift</title>
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
 
@@ -25,7 +25,11 @@
             </li>
 
             <li class="menu-item">
+              {{#if userInSession }}
+            <a href="/profile">My profile</a>
+            {{else}}
             <a href="/login">My account</a>
+            {{/if}}
             </li>
 
             <li class="menu-item">
