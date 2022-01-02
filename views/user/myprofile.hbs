@@ -1,8 +1,13 @@
 <link rel="stylesheet" href="/stylesheets/style-myprofile.css" />
 
 {{#if userInSession}} 
+<<<<<<< HEAD
 
 {{!-
+=======
+    
+  {{!-
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
 ╔╦╗╔═╗╦╔╗╔  ╔═╗╔═╗╔╗╔╔╦╗╔═╗╦╔╗╔╔═╗╦═╗
 ║║║╠═╣║║║║  ║  ║ ║║║║ ║ ╠═╣║║║║║╣ ╠╦╝
 ╩ ╩╩ ╩╩╝╚╝  ╚═╝╚═╝╝╚╝ ╩ ╩ ╩╩╝╚╝╚═╝╩╚═
@@ -47,7 +52,11 @@
 
     <h3>My trades</h3>
     <div class="middle-container-box">
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
       <p>Received offer(s) pending for my answer : {{transactionswaitingforanswer.length}}</p>
       <p>Responses to my offer(s): {{transactionsanswered.length}}</p>
       <div>
@@ -61,11 +70,19 @@
   ╠╩╗║ ║ ║  ║ ║ ║║║║  ║  ║ ║║║║ ║ ╠═╣║║║║║╣ ╠╦╝
   ╚═╝╚═╝ ╩  ╩ ╚═╝╩ ╩  ╚═╝╚═╝╝╚╝ ╩ ╩ ╩╩╝╚╝╚═╝╩╚═
   -}}
+<<<<<<< HEAD
   
   <div class="bottom-container">
     
     <div>
     <h3>My gifts list</h3>
+=======
+
+  <div class="bottom-container">
+    
+    <div>
+      <h3>My gifts list</h3>
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
     <div>
 
     <ul class="bottom-container">
@@ -90,6 +107,7 @@
               </form>
               {{/if}}
             </div>
+<<<<<<< HEAD
             
           </div>
         {{/each}}
@@ -108,11 +126,35 @@
 <div class="message-error">
   {{#if messages.error}}
   <p>{{messages.error}}</p>
+=======
+
+          </div>
+        {{/each}}
+         </div>
+
+     </li>
+    
+    </ul>
+
+
+
+
+
+  </div>
+
+  <div class="message-error">
+  {{#if messages.error}}
+    <p>{{messages.error}}</p>
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
   {{/if}}
 </div>
  
   {{else}}
+<<<<<<< HEAD
   <div class="login">
     <a href="/login">Please log-in or sign-up to start trading with our community !</a>
   </div>
+=======
+    <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
 {{/if}}

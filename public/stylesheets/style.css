@@ -70,6 +70,7 @@ nav>h1 {
     padding-left: 2%;
 }
 
+
 .logo {
     display: inline-block;
 }
@@ -83,6 +84,17 @@ h3 {
     font-size: 180%;
     color: rgb(179, 5, 34);
     margin: 0 0 5px 0;
+}
+
+h2 {
+  font-size: 180%;
+  color: rgb(179, 5, 34);
+}
+
+h3 {
+  font-size: 180%;
+  color: rgb(179, 5, 34);
+  margin: 0 0 5px 0;
 }
 
 
@@ -117,6 +129,16 @@ h3 {
     font-style: italic;
 }
 
+.menu-item p {
+  display: inline-block;
+  font-weight: 100;
+  font-size: 100%;
+  color: #d6d6d6;
+  margin-right: 60px;
+  margin-left: 30px;
+  font-style: italic;
+}
+
 
 /* Surlignage des liens du menu */
 
@@ -132,7 +154,6 @@ h3 {
     width: 500px;
     height: auto;
 }
-
 
 /*
  ####### ####### ####### ####### ####### ######  
@@ -255,7 +276,11 @@ footer {
 
 /*
 label {
+<<<<<<< HEAD
     font-weight: 700;
+=======
+  font-weight: 700;
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
 
 }
 */

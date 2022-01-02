@@ -1,5 +1,6 @@
 <div class="container-auth">
 
+<<<<<<< HEAD
     <div class="box-auth">
         <h2>New user ?</h2>
         <p> Don't have an account yet ? </p>
@@ -9,6 +10,16 @@
         <a href="/signup">Become a trader</a>
     </div>
 
+=======
+  <div class="box-auth">
+    <h2>New user ?</h2>
+    <p> Don't have an account yet ? </p>
+    <div></div>
+    <p> No more hesitations, get one and start trading with us.</p>
+            
+    <a href="/signup">Become a trader</a>
+    </div>
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
 
     <div class="box-auth">
         <h2>Sign in</h2>
@@ -23,11 +34,30 @@
             <button>Log me</button>
         </form>
 
+<<<<<<< HEAD
         <div class="message-error">
           {{#if errorMessage}}
           <p>{{errorMessage}}</p>
           {{/if}}
         </div>
         
+=======
+<div class="box-auth">
+        <h2>Sign in</h2>
+
+        <form action="/login" method="POST">
+            <label>
+                <input type="text" name="email" placeholder="EMAIL ADRESS">
+            </label>
+            <label>
+                <input type="password" name="password" placeholder="PASSWORD">
+            </label>
+            <button>Log me</button>
+        </form>
+        <div class="message-error">
+        {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+        {{/if}}
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
     </div>
 </div>

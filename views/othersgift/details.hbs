@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/style-displaygift.css" />
 
 {{#if userInSession}}
+<<<<<<< HEAD
 
 <div class="displaygiftdetail-container">
   <div class="displaygiftdetail-box">
@@ -47,10 +48,57 @@
       </div>
     </div>
 
+=======
+ 
+ <div class="displaygiftdetail-container">
+    <div class="displaygiftdetail-box">
+
+      <div class="displaygift-box-fullimage">
+       <img class="fullimg" src="{{giftDetails.picture}}" alt="photo">
+      </div>
+
+
+      <div class="displaygiftdetail-box-content">
+
+        <div class="displaygift-box-title">
+          <p>{{giftDetails.name}}</p>
+          <p class="displaygift-box-brand"> {{giftDetails.brand}} </p>
+        </div>
+
+        <p class="displaygift-box-description">{{giftDetails.description}}</p>
+        <p class="displaygift-box-userA">Proposed by {{giftDetails.user.username}} ({{giftDetails.user.city}} {{giftDetails.user.zip}}) </p>
+
+        <div class="displaygift-box-trading">
+          <form action="/gifts/{{giftDetails.id}}" method="POST">
+           <label>
+            My gifts 
+
+           <div class="displaygift-box-mygifts">
+             <select name="mygifts" multiple>
+             {{#each giftsFromDb}}
+             <option value={{this.id}}>{{this.name}}</option>
+             {{/each}}
+             </select>
+            </div>
+
+           </label>
+
+            <button>Send my offer</button>
+          </form>
+
+          <div class="message-error">
+            {{#if messages.error}}
+              <p>{{messages.error}}</p>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
   </div>
 </div>
 
 
+<<<<<<< HEAD
 
 
 {{else}}
@@ -58,3 +106,12 @@
 <a href="/login">Please log-in or sign-up to start trading with our community !</a>
 </div>
 {{/if}}
+=======
+<div class="footer-previouspage">
+<a href="/profile">Return to my profile</a>
+
+{{else}}
+  <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
+{{/if}}
+</div>
+>>>>>>> 7a1d1f43c15dfa3c44b23b90c1105e37f4ced88e
