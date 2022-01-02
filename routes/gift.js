@@ -22,10 +22,11 @@ router.post('/mygifts/add', fileUploader.single('picture'), (req, res, next) => 
   const { name, category, brand, description, available } = req.body;
   const user = req.session.user;
   console.log('user: ', user);
+
   
   // Validation mandatory fields
-  if ( !name || !category || !description) {
-    res.render('gift/new', {userInSession: user, errorMessage: 'Please enter the gift name, category and description.' });
+  if (!name || !category || !brand) {
+    res.render("gift/new", {userInSession: user, errorMessage: "Please enter the gift's name, category and brand."});
     return;
   }
 
@@ -219,38 +220,21 @@ router.post('/mygifts/:id/delete', (req, res, next) => {
       Transaction.find({gitA:req.params.id})
         .then(transactions => {
           console.log('transactions: ', transactions);
-          giftsIds = [];
-        for (let i =0; i<transactions.length; i++) {
-          giftsIds.push(transactions[i].giftA, transactions[i].giftB);
-        }
-        console.log('giftsIds: ', giftsIds)
-        
-        Gift.findById(req.params.id)
-        if (giftsIds.includes(req.params.id)) {
-          req.flash("error", "You cannot delete this gift while it is in a transaction.");
-           res.redirect('/profile');
-        } else {
-          Gift.findByIdAndDelete(req.params.id)
-          .then(deleteGift => {
-                res.redirect('/profile')
-          })
-          .catch(error => {
-                console.log(error);
-                next(error);
-              }) 
-          // if(transactions.length === 0 ){
-            // for (let i=0; i< transactions.length; i++){
-            // Gift.findByIdAndRemove(req.params.id)
-            //   .then(deleteGift => {
-            //     res.redirect('/profile')
-            //   })
-            //   .catch(error => {
-            //     console.log(error);
-            //     next(error);
-            //   }) 
-          // } else {
-            // req.flash("error", "You cannot delete this gift while it is in a transaction.");
-            // res.redirect('/profile');
+          for (let i =0; i<transactions.length; i++) {
+            const giftA = transactions[i].giftA;
+            const giftB = transactions[i].giftB;
+            console.log('req.params.id: ', req.params.id)
+            const id = req.params.id;
+            if (id === giftA.toString() || id === giftB.toString()) {
+              req.flash("error", "You cannot delete this gift while it is in a transaction.");
+              res.redirect('/profile');
+            } else {
+              Gift.findByIdAndDelete(req.params.id)
+                .then(deleteGift => {
+                  res.redirect('/profile')
+                })
+                .catch(error => next(error))
+            }
           }
         }).catch(error => next(error))       
     }).catch(error => next(error)) 

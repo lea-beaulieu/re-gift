@@ -320,6 +320,7 @@ input {
     background: url("/images/giftbg.jpeg");
     background-size: 50%;
     background-position: center;
+    margin-bottom : 40px;
     /*box-sizing: border-box;*/
 }
 

@@ -119,11 +119,11 @@ router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-  res
-    .status(400)
-    .render("auth/login", { errorMessage: "Please enter your email and your password."  });
+    res
+      .status(400)
+      .render("auth/login", { errorMessage: "Please enter your email and your password."  });
     return;
-}
+  }
 
 // Strong password validation
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;

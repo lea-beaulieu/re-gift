@@ -43,13 +43,17 @@
       <button>Post it !</button>
       </div>
 
+      
+
     </form>
-
-    {{#if errorMessage}}
-    <h3>{{errorMessage}}</h3>
-    {{/if}}
-
+    
+<div class="message-error">
+        {{#if errorMessage}}
+          <p>{{errorMessage}}</p>
+        {{/if}}
+      </div>
   </div>
+  
 </div>
 
 {{else}}
