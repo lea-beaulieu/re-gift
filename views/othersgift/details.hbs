@@ -35,8 +35,13 @@
                 <button>Send my offer</button>
               </form>
             </div>
+            
           {{/if}}
+          {{else}}
+            <p>Contact : {{giftDetails.user.email}} </p>
         {{/if}}
+        
+
     
         <div class="message-error">
           {{#if messages.error}}
