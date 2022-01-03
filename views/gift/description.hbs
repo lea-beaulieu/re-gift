@@ -6,12 +6,12 @@
   <div class="displaygiftdetail-box">
 
     <div class="displaygift-box-fullimage">
-    <img class="fullimg" src="{{giftDetails.picture}}" alt="photo">
+      <input type="checkbox" id="zoom">
+      <label for="zoom"><img class="fullimg" src="{{giftDetails.picture}}" alt="photo"/></label>
     </div>
 
     <div class="displaygiftdetail-box-content">
-
-       <div class="displaygift-box-title">
+      <div class="displaygift-box-title">
         <p>{{giftDetails.name}} details<p>
         <p class="displaygift-box-brand">Brand: {{giftDetails.brand}}</p>
         <p class="displaygift-box-brand">Category: {{giftDetails.category}}</p>
@@ -20,15 +20,11 @@
       <p class="displaygift-box-description">Description : {{giftDetails.description}}</p>
 
     </div>
-
-   
-
   </div>
 </div>
 
-
 {{else}}
-<div class="login">
-<p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
-</div>
+  <div class="login">
+    <p><a href="/login">Please log-in or sign-up to start trading with our community !</a></p>
+  </div>
 {{/if}}

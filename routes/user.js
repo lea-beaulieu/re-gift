@@ -18,29 +18,29 @@ router.get('/profile', (req, res, next) => {
   Gift.find({user: req.session.user._id})
     .then(giftFromDb => {
       mygiftsIds = [];
-        for (let i =0; i<giftFromDb.length; i++) {
-          mygiftsIds.push(giftFromDb[i].id);
-        }
-        // letting user knows the number of trades waiting for a response
-        Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $eq: 'initiate'}})
-          .then(transactionswaitingforanswer => {
-            // letting user knows the number of responses to the trades he has proposed
-            Transaction.find({giftB:{ $in: mygiftsIds}, status:{ $ne: 'initiate'}})
-              .then(transactionsanswered => {
-                console.log('transactions answered : ', transactionsanswered);
-                res.render('user/myprofile', {
-                  userInSession: req.session.user,
-                  giftFromDb: giftFromDb,
-                  transactionswaitingforanswer,
-                  transactionsanswered
-                })
-              }).catch(error => next(error))
-          }).catch(error => next(error))
-      })
-      .catch (error =>{
-        console.log(`error while listing gift from Db:' ${error}`);
-        next(error);
-      })
+      for (let i =0; i<giftFromDb.length; i++) {
+        mygiftsIds.push(giftFromDb[i].id);
+      }
+      // letting user knows the number of trades waiting for a response
+      Transaction.find({giftA:{ $in: mygiftsIds}, status:{ $eq: 'initiate'}})
+        .then(transactionswaitingforanswer => {
+          // letting user knows the number of responses to the trades he has proposed
+          Transaction.find({giftB:{ $in: mygiftsIds}, status:{ $ne: 'initiate'}})
+            .then(transactionsanswered => {
+              console.log('transactions answered : ', transactionsanswered);
+              res.render('user/myprofile', {
+                userInSession: req.session.user,
+                giftFromDb: giftFromDb,
+                transactionswaitingforanswer,
+                transactionsanswered
+              })
+            }).catch(error => next(error))
+        }).catch(error => next(error))
+    })
+    .catch (error =>{
+      console.log(`error while listing gift from Db:' ${error}`);
+      next(error);
+    })
 })
 
 module.exports = router;

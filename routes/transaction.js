@@ -17,25 +17,25 @@ router.post('/gifts/:id', (req, res, next) => {
   Transaction.find({giftB:req.body.mygifts})
   .then(gifts => {
     console.log('gifts: ', gifts);
-      if(gifts.length === 0 ){
-        Transaction.create({
-          giftA: req.params.id,
-          giftB: req.body.mygifts,
-          status: 'initiate',
-        })
-        .then(transaction => {
-          console.log('transaction: ', transaction)
-          res.redirect('/transactionsstatus')
-          })
-        .catch(error => {
-          console.log(`transaction error: ${error}`);
-          res.redirect('/gifts');
-          next(error);
-        })
-      } else {
-        req.flash("error", "This gift is already in a transaction. Please choose another one.");
-        res.redirect('/gifts/' + req.params.id);
-      }
+    if(gifts.length === 0 ){
+      Transaction.create({
+        giftA: req.params.id,
+        giftB: req.body.mygifts,
+        status: 'initiate',
+      })
+      .then(transaction => {
+        console.log('transaction: ', transaction)
+        res.redirect('/transactionsstatus')
+      })
+      .catch(error => {
+        console.log(`transaction error: ${error}`);
+        res.redirect('/gifts');
+        next(error);
+      })
+    } else {
+      req.flash("error", "This gift is already in a transaction. Please choose another one.");
+      res.redirect('/gifts/' + req.params.id);
+    }
   }).catch(error => next(error))
 })
 
@@ -48,7 +48,7 @@ router.post('/gifts/:id', (req, res, next) => {
 // ######## ####  ######     ##    #### ##    ##  ######   
 
 router.get('/transactionsstatus', (req, res) => {
-  Gift.find({user: req.session.user._id})
+  Gift.find({user: req.session.user})
     .then(mygifts => {
       var mygiftsIds = [];
       for (let i =0; i<mygifts.length; i++) {
@@ -102,17 +102,17 @@ router.get('/transaction/:id', (req, res, next) => {
         .populate('user')
         .then(giftproposed => {
           console.log('userToContact: ', giftproposed.user)
-            res.render('transaction/edit', {
-              transactionsIamaskedfor,
-              giftproposed,
-              userInSession: req.session.user
-            })
+          res.render('transaction/edit', {
+            transactionsIamaskedfor,
+            giftproposed,
+            userInSession: req.session.user
+          })
         }).catch(error => next(error));
     })
     .catch(error => {
-        console.log(`Error while accessing the transaction to update: ${error}`);
-        res.redirect('/transactionsstatus');
-        next(error);
+      console.log(`Error while accessing the transaction to update: ${error}`);
+      res.redirect('/transactionsstatus');
+      next(error);
     })
 })
 
@@ -120,15 +120,12 @@ router.get('/transaction/:id', (req, res, next) => {
 router.post('/transaction/:id', (req, res, next) => {
   const { status } = req.body;
   console.log(`status :`, status)
-
   Transaction.findByIdAndUpdate(req.params.id, { status: status }, { new: true })
     .then(editedstatustransaction => {
-
       if (req.body.status !== 'accept') {
         res.redirect('/transactionsstatus')
         return
       }
-
       Gift.findByIdAndUpdate(editedstatustransaction.giftB, { available: false }, { new: true })
         .populate('user')
         .then(giftproposed => {
@@ -140,15 +137,15 @@ router.post('/transaction/:id', (req, res, next) => {
               res.render('transaction/contact', {
                 editedstatustransaction,
                 giftproposed,
-                userInSession: req.session.user
+                userInSession: req.session.user,
               })
             }).catch(err => next(err))
         }).catch(err => next(err))
     })
     .catch(error => {
-        console.log(`error while updating the transaction status: ${error}`);
-        res.render('transaction/edit', { errorMessage: 'Error while editing the transaction status.' });
-        next(error);
+      console.log(`error while updating the transaction status: ${error}`);
+      res.render('transaction/edit', { errorMessage: 'Error while editing the transaction status.' });
+      next(error);
     })
 })
 

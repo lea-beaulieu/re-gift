@@ -1,63 +1,59 @@
 {{#if userInSession}}
 
-<div class="container-signup-form">
+  <div class="container-signup-form">
 
-  <div class="box-signup-form">
+    <div class="box-signup-form">
 
-    <h2>Add a new gift</h2>
+      <h2>Add a new gift</h2>
 
-    <form action="/mygifts/add" method="POST" enctype="multipart/form-data">
+      <form action="/mygifts/add" method="POST" enctype="multipart/form-data">
 
-      <label>
-        <div class="signup-tag">Gift name</div>
-        <input class="signup-input" type="text" name="name">
-      </label>
+        <label>
+          <div class="signup-tag">Gift name</div>
+          <input class="signup-input" type="text" name="name">
+        </label>
 
-      <label>
-        <div class="signup-tag">Category</div>
-          <select id="newselect" multiple name="category">
+        <label>
+          <div class="signup-tag">Category</div>
+          <select multiple name="category">
             <option value="books">Books</option>
             <option value="boxes">Boxes</option>
             <option value="fragrances">Fragrances</option>
             <option value="toys">Toys</option>  
           </select>
-      </label>
+        </label>
 
-      <label>
-        <div class="signup-tag">Brand</div>
-        <input class="signup-input" type="text" name="brand">
-      </label>
+        <label>
+          <div class="signup-tag">Brand</div>
+          <input class="signup-input" type="text" name="brand">
+        </label>
 
-      <label>
-        <div class="signup-tag">Description</div>
-        <textarea name="description">
-        </textarea>
-      </label>
+        <label>
+          <div class="signup-tag">Description</div>
+          <textarea name="description"></textarea>
+        </label>
 
-      <label>
-        <div class="signup-tag">Picture</div>
-        <input class="signup-input" type="file" name="picture"/>
-      </label>
+        <label>
+          <div class="signup-tag">Picture</div>
+          <input class="signup-input" type="file" name="picture">
+        </label>
       
-      <div>
-      <button>Post it !</button>
-      </div>
+        <div>
+          <button>Post it !</button>
+        </div>
 
-      
-
-    </form>
+      </form>
     
-<div class="message-error">
+      <div class="message-error">
         {{#if errorMessage}}
           <p>{{errorMessage}}</p>
         {{/if}}
       </div>
+    </div>
   </div>
-  
-</div>
 
 {{else}}
-<div class="login">
-<a href="/login">Please log-in or sign-up to start trading with our community !</a>
-</div>
+  <div class="login">
+    <a href="/login">Please log-in or sign-up to start trading with our community !</a>
+  </div>
 {{/if}}

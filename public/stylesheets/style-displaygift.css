@@ -5,7 +5,7 @@
  #    # #      # #####  #      ######   #      #   #   #      #    #    #    #   #      #      ######   #   
  #    # # #    # #      #      #    #   #      #   #   #      #    #    #    #   #      #    # #    #   #   
  #####  #  ####  #      ###### #    #   #      #   #   ###### #    #    #####    #       ####  #    #   # 
- */
+*/
 
 
 /* Cancel all the auto borders to better place flex box */
@@ -21,7 +21,7 @@
 ┌─┐┌─┐┌┐┌┌┬┐┌─┐┬┌┐┌┌─┐┬─┐  ┌─┐┌┐┌┌┬┐  ┌┐ ┌─┐─┐ ┬┌─┐┌─┐
 │  │ ││││ │ ├─┤││││├┤ ├┬┘  ├─┤│││ ││  ├┴┐│ │┌┴┬┘├┤ └─┐
 └─┘└─┘┘└┘ ┴ ┴ ┴┴┘└┘└─┘┴└─  ┴ ┴┘└┘─┴┘  └─┘└─┘┴ └─└─┘└─┘
- */
+*/
 
 .displaygift-container {
     display: flex;
@@ -142,7 +142,7 @@ img {
 ┌┬┐┌─┐─┐ ┬┌┬┐
  │ ├┤ ┌┴┬┘ │ 
  ┴ └─┘┴ └─ ┴ 
- */
+*/
 
 .displaygift-box-title {
     color: #696969;
@@ -194,7 +194,7 @@ img {
 ┌─┐┌─┐┌┐┌┌┬┐┌─┐┬┌┐┌┌─┐┬─┐  ┌─┐┌┐┌┌┬┐  ┌┐ ┌─┐─┐ ┬┌─┐┌─┐
 │  │ ││││ │ ├─┤││││├┤ ├┬┘  ├─┤│││ ││  ├┴┐│ │┌┴┬┘├┤ └─┐
 └─┘└─┘┘└┘ ┴ ┴ ┴┴┘└┘└─┘┴└─  ┴ ┴┘└┘─┴┘  └─┘└─┘┴ └─└─┘└─┘
- */
+*/
 
 .displaygiftdetail-container {
     display: flex;
@@ -230,10 +230,26 @@ img {
 
 .fullimg {
     width: 100%;
-    height: auto;
+    height: 300px;
     vertical-align: middle;
     object-fit: cover;
     object-position: 100% 0;
+}
+
+#zoom {
+    display: none;
+}
+
+#zoom:checked + label > img {
+    height: auto;
+}
+
+#zoom2 {
+    display: none;
+}
+
+#zoom2:checked + label > img {
+    height: auto;
 }
 
 .displaygift-box-fullimage {
@@ -249,7 +265,7 @@ img {
 ┌┬┐┌─┐─┐ ┬┌┬┐
  │ ├┤ ┌┴┬┘ │ 
  ┴ └─┘┴ └─ ┴ 
- */
+*/
 
 label {
     color: #696969;
@@ -257,7 +273,6 @@ label {
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 300;
-    /*border-top: 1px solid rgba(179, 5, 34, 0.8);*/
 }
 
 .displaygift-box-description {
@@ -276,7 +291,6 @@ label {
     margin: 2px 0 20px 0;
     font-weight: 300;
     text-align: justify;
-    ;
 }
 
 .displaygift-box-mygifts select {

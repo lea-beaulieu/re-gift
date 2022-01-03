@@ -64,5 +64,6 @@ module.exports = (app) => {
       }),
     })
   );
+  
   app.use(flash());
 };

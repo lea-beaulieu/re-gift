@@ -21,12 +21,12 @@
     <div class="top-container-box" id="picture-profile">
 
       <div class="top-container-box-sub">
-      <img src="{{userInSession.avatar}}" alt="userAvatar"/>
+        <img src="{{userInSession.avatar}}" alt="userAvatar"/>
       </div>
 
       <div class="top-container-box-sub">
-      <p class="user">{{userInSession.firstname}} {{userInSession.lastname}}</p>
-      <a href="/mygifts/add">Add a gift</a>
+        <p class="user">{{userInSession.firstname}} {{userInSession.lastname}}</p>
+        <a href="/mygifts/add">Add a gift</a>
       </div>
 
     </div>
@@ -47,11 +47,10 @@
 
     <h3>My trades</h3>
     <div class="middle-container-box">
-      
       <p>Received offer(s) pending for my answer : {{transactionswaitingforanswer.length}}</p>
       <p>Responses to my offer(s): {{transactionsanswered.length}}</p>
       <div>
-      <p><a href="/transactionsstatus">Check all offers</a></p>
+        <p><a href="/transactionsstatus">Check all offers</a></p>
       </div>
     </div>
   </div>
@@ -63,55 +62,47 @@
   -}}
   
   <div class="bottom-container">
-    
     <div>
-    <h3>My gifts list</h3>
-    <div>
+      <h3>My gifts list</h3>
+  
+      <div>
+        <ul class="bottom-container">
+          {{#each giftFromDb}}
 
-    <ul class="bottom-container">
-      {{#each giftFromDb}}
+            <li class="bottom-container">
 
-      <li class="bottom-container">
+              <div class="bottom-box-mygift">
 
-        <div class="bottom-box-mygift">
+                <div class="bottom-box-mygift-photo">
+                  <img src="{{this.picture}}" alt="giftImg"/>        
+                </div>
 
-          <div class="bottom-box-mygift-photo">
-            <img src="{{this.picture}}" alt="giftImg"/>        
-          </div>
+              <div class="bottom-box-mygift-content">
+                <a class="title" href="/mygifts/{{id}}">{{name}}</a>
+                <p>Available : {{this.available}}</p>
+                <div class="mygift-actions">
+                  {{#if available}}
+                    <a class="mygift-actions" href="/mygifts/{{id}}/edit">Update</a>
+                    <form action="/mygifts/{{id}}/delete" method="POST">
+                      <button class="mygift-actions">Delete</button>
+                    </form>
+                  {{/if}}
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
 
-          <div class="bottom-box-mygift-content">
-            <a class="title" href="/mygifts/{{id}}">{{name}}</a>
-            <p>Available : {{this.available}}</p>
-            <div class="mygift-actions">
-              {{#if available}}
-              <a class="mygift-actions" href="/mygifts/{{id}}/edit">Update</a>
-              <form action="/mygifts/{{id}}/delete" method="POST">
-              <button class="mygift-actions">Delete</button>
-              </form>
-              {{/if}}
-            </div>
-            
-          </div>
-        {{/each}}
-        </div>
-
-      </li>
-      
-    </ul>
-
-
-
-
-
-</div>
-
-<div class="message-error">
-  {{#if messages.error}}
-  <p>{{messages.error}}</p>
-  {{/if}}
-</div>
+  <div class="message-error">
+    {{#if messages.error}}
+      <p>{{messages.error}}</p>
+    {{/if}}
+  </div>
  
-  {{else}}
+{{else}}
   <div class="login">
     <a href="/login">Please log-in or sign-up to start trading with our community !</a>
   </div>

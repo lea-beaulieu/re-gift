@@ -2,35 +2,29 @@
 <h1>{{category}} </h1>
 
 <div class="displaygift-count">
-{{giftsOfSelectedCategory.length}} gift(s) available
+  {{giftsOfSelectedCategory.length}} gift(s) available
 </div>
 
 <ul class="displaygift-container">
   {{#each giftsOfSelectedCategory}}
 
-  <li class="displaygift-container__box">
+    <li class="displaygift-container__box">
 
-    <div class="displaygift-box">
+      <div class="displaygift-box">
+        <div class="displaygift-box-image">
+          <img src="{{this.picture}}" alt="giftImg"/>
+        </div>
 
-    
-
-      <div class="displaygift-box-image">
-      <img src="{{this.picture}}" alt="giftImg"/>
+        <div class="displaygift-box-content">
+          <div class="displaygift-box-title">
+            <p class="displaygift-box-title">{{this.name}}</p>
+            <p class="displaygift-box-brand">{{this.brand}}</p>
+          </div> 
+          <p class="displaygift-box-text"></p>
+          <button class="displaygift-box-btn displaygift-box-btn--block"><a href="/gifts/{{id}}"><p>GO</p></a></button>
+        </div>
       </div>
 
-      <div class="displaygift-box-content">
-        <div class="displaygift-box-title">
-        <p class="displaygift-box-title">{{this.name}}</p>
-        <p class="displaygift-box-brand">{{this.brand}}</p>
-      </div> 
-      <p class="displaygift-box-text"></p>
-      <button class="displaygift-box-btn displaygift-box-btn--block"><a href="/gifts/{{id}}"><p>GO</p></a></button>
-
-
-      {{/each}}
-
-    </div>
-
-  </li>
-
+    </li>
+  {{/each}}
 </ul>

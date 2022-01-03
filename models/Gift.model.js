@@ -10,15 +10,15 @@ const giftSchema = new mongoose.Schema({
   available: {
     type: Boolean,
     default: true //false only if the transaction is accepted
-    },
+  },
   picture: {
     type: String,
   }
 }, 
 {
-    timestamps: true
+  timestamps: true
 })
 
-const Gift = mongoose.model('Gift', giftSchema)
+const Gift = mongoose.model('Gift', giftSchema);
 
 module.exports = Gift;

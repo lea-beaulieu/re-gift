@@ -2,32 +2,28 @@
 
 {{#if userInSession}}
 
-<div class="container-signup-form">
-  <div class="box-transaction-edit">
+  <div class="container-signup-form">
+    <div class="box-transaction-edit">
 
-<h2>Edit the trade status with {{giftproposed.user.username}}</h1>
+      <h2>Edit the trade status with {{giftproposed.user.username}}</h1>
 
-<form action="/transaction/{{transactionsIamaskedfor.id}}" method="POST">
+      <form action="/transaction/{{transactionsIamaskedfor.id}}" method="POST">
 
-  <label>
-      Status
-      <select multiple name="status">
-        <option value="accept">Accept</option>
-        <option value="decline">Decline</option>
-      </select>
-  </label>
+        <label>
+          Status
+          <select multiple name="status">
+            <option value="accept">Accept</option>
+            <option value="decline">Decline</option>
+          </select>
+        </label>
 
-
-   <button>Edit</button>
-
-  
-
-</form>
+        <button>Edit</button>
+      </form>
+    </div>
   </div>
-</div>
 
 {{else}}
-<div class="login">
-<a href="/login">Please log-in or sign-up to start trading with our community !</a>
-</div>
+  <div class="login">
+    <a href="/login">Please log-in or sign-up to start trading with our community !</a>
+  </div>
 {{/if}}

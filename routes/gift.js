@@ -22,7 +22,6 @@ router.post('/mygifts/add', fileUploader.single('picture'), (req, res, next) => 
   const { name, category, brand, description, available } = req.body;
   const user = req.session.user;
   console.log('user: ', user);
-
   
   // Validation mandatory fields
   if (!name || !category || !brand) {
@@ -34,13 +33,13 @@ router.post('/mygifts/add', fileUploader.single('picture'), (req, res, next) => 
     // default image or upload by user
     picture: req.file && req.file.path || "https://res.cloudinary.com/hkxgywr9f/image/upload/v1640257080/Regift/default_tohhzr.jpg"})
     .then(createdgift => {
-        console.log(`createdgift: ${createdgift}`);
-        res.redirect('/profile');
+      console.log(`createdgift: ${createdgift}`);
+      res.redirect('/profile');
     })
     .catch(error => {
-        console.log(`error while adding a gift: ${error}`);
-        res.render('gift/new', { errorMessage: 'Error while adding a gift.' });
-        next(error);
+      console.log(`error while adding a gift: ${error}`);
+      res.render('gift/new', { errorMessage: 'Error while adding a gift.' });
+      next(error);
     })
 })
 
@@ -62,8 +61,8 @@ router.get('/mygifts/:id', (req, res, next) => {
     })
     .catch(error => {
       console.log(`error on gift details: ${error}`);
-        res.render('user/myprofile', { errorMessage: 'Error on reading gift details.' });
-        next(error);
+      res.render('user/myprofile', { errorMessage: 'Error on reading gift details.' });
+      next(error);
     })
 })
 
@@ -113,13 +112,13 @@ router.post('/mygifts/:id/edit', fileUploader.single('picture'), (req, res, next
 
   Gift.findByIdAndUpdate(req.params.id, { name, category, brand, description, picture}, { new: true })
     .then(editedgift => {
-        console.log(`The edition of the gift ${editedgift} is properly done`)
-        res.redirect('/mygifts/' + req.params.id);
+      console.log(`The edition of the gift ${editedgift} is properly done`)
+      res.redirect('/mygifts/' + req.params.id);
     })
     .catch(error => {
-        console.log(`error while editing the gift: ${error}`);
-        res.render('gift/edit', { errorMessage: 'Error while editing a gift.' });
-        next(error);
+      console.log(`error while editing the gift: ${error}`);
+      res.render('gift/edit', { errorMessage: 'Error while editing a gift.' });
+      next(error);
     })
 })
 
@@ -149,29 +148,29 @@ router.get('/gifts/category', (req, res, next) => {
   console.log('req.query: ', req.query);
   console.log('req.query.name: ', req.query.name);
   if (req.session.user) {
-  Gift.find({ category: req.query.name, available: true, user:{ $ne: req.session.user}})
-    .populate('user')
-    .then(giftsOfSelectedCategory => {
+    Gift.find({ category: req.query.name, available: true, user:{ $ne: req.session.user}})
+      .populate('user')
+      .then(giftsOfSelectedCategory => {
         console.log('gift: ', giftsOfSelectedCategory)
         res.render('othersgift/giftsbycategory', { category: req.query.name, giftsOfSelectedCategory, userInSession: req.session.user })
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.log(`error while looking gifts by category: ${error}`);
         res.redirect('/gifts');
         next(error);
-    })
+      })
   } else {
     Gift.find({ category: req.query.name, available: true})
-    .populate('user')
-    .then(giftsOfSelectedCategory => {
+      .populate('user')
+      .then(giftsOfSelectedCategory => {
         console.log('gift: ', giftsOfSelectedCategory)
         res.render('othersgift/giftsbycategory', { category: req.query.name, giftsOfSelectedCategory})
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.log(`error while looking gifts by category: ${error}`);
         res.redirect('/gifts');
         next(error);
-    })
+      })
   }
 })
 
@@ -193,7 +192,8 @@ router.get('/gifts/:id', (req, res, next) => {
           res.render('othersgift/details', {
             giftDetails,
             giftsFromDb,
-            userInSession: req.session.user
+            userInSession: req.session.user,
+            available: true
           })
         })
     })
@@ -221,21 +221,24 @@ router.post('/mygifts/:id/delete', (req, res, next) => {
         .then(transactions => {
           console.log('transactions: ', transactions);
           for (let i =0; i<transactions.length; i++) {
-            const giftA = transactions[i].giftA;
-            const giftB = transactions[i].giftB;
-            console.log('req.params.id: ', req.params.id)
+            var giftA = transactions[i].giftA;
+            var giftB = transactions[i].giftB;
             const id = req.params.id;
-            if (id === giftA.toString() || id === giftB.toString()) {
+            if (id === giftA.toString()) {
               req.flash("error", "You cannot delete this gift while it is in a transaction.");
               res.redirect('/profile');
-            } else {
-              Gift.findByIdAndDelete(req.params.id)
-                .then(deleteGift => {
-                  res.redirect('/profile')
-                })
-                .catch(error => next(error))
-            }
+              return;
+            } else if (id === giftB.toString()) { 
+              req.flash("error", "You cannot delete this gift while it is in a transaction.");
+              res.redirect('/profile');
+              return;
+            } 
           }
+          Gift.findByIdAndDelete(req.params.id)
+            .then(deleteGift => {
+              res.redirect('/profile')
+            })
+            .catch(error => next(error))
         }).catch(error => next(error))       
     }).catch(error => next(error)) 
 })
