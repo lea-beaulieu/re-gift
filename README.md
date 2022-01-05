@@ -8,3 +8,7 @@
 * User can CREATE a trade by sending an offer, UPDATE received offer's status, READ sent offer and received offer.
 
 <a href="https://re-gift.herokuapp.com/">DEMO</a>
+
+You can use these credentials to trade : 
+* email : demo@mail.com   password : Demonstration1
+* email : test@mail.com   password: TestTest1
