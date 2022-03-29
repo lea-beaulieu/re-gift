@@ -43,7 +43,7 @@ You can use these credentials, but you are more than welcome to create an accoun
 ![image](https://user-images.githubusercontent.com/87803489/160677458-3c3c23d3-22a9-418a-98ed-6a444b633aa0.png)
 
 ## 📌 Log In / Sign Up
-![image](https://user-images.githubusercontent.com/87803489/160673418-ae8b9876-1a20-4c88-baaa-e1ec644c4a7d.png)
+![image](https://user-images.githubusercontent.com/87803489/160723632-39d2cd4f-aa43-4b48-b4ea-8b626b092eac.png)
 
 
 ## 📌 Profil (read and delete gift)
